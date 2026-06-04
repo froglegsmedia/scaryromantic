@@ -7,21 +7,13 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap');
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --black: #0a0a0a;
       --white: #f5f0eb;
       --red: #8b1a1a;
       --muted: #6b6b6b;
-    }
-
-    html, body {
-      height: 100%;
     }
 
     body {
@@ -49,13 +41,10 @@
       text-transform: uppercase;
       color: var(--white);
       text-decoration: none;
+      cursor: pointer;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-    }
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
 
     nav a {
       color: var(--muted);
@@ -64,11 +53,14 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       transition: color 0.3s;
+      cursor: pointer;
     }
 
-    nav a:hover {
-      color: var(--white);
-    }
+    nav a:hover, nav a.active { color: var(--white); }
+
+    /* Pages */
+    .page { display: none; flex: 1; flex-direction: column; }
+    .page.active { display: flex; }
 
     /* Hero */
     .hero {
@@ -99,10 +91,7 @@
       max-width: 900px;
     }
 
-    .tagline em {
-      font-style: italic;
-      color: var(--red);
-    }
+    .tagline em { font-style: italic; color: var(--red); }
 
     .sub {
       margin-top: 2rem;
@@ -130,42 +119,82 @@
       background: rgba(245, 240, 235, 0.05);
     }
 
-    /* About */
-    .about {
-      max-width: 680px;
-      margin: 0 auto 6rem;
-      padding: 0 2rem;
-      text-align: center;
+    /* Inner pages */
+    .inner-page {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 2rem 6rem;
+      position: relative;
     }
 
-    .about h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 300;
-      letter-spacing: 0.1em;
+    .inner-page::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 40%, rgba(139, 26, 26, 0.09) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .page-inner { max-width: 700px; margin: 0 auto; width: 100%; }
+
+    .page-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      margin-bottom: 2rem;
+      color: var(--red);
+      margin-bottom: 1.5rem;
+    }
+
+    .inner-page h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.08;
+      margin-bottom: 3rem;
       color: var(--white);
     }
 
-    .about p {
+    .inner-page h1 em { font-style: italic; color: var(--red); }
+
+    .body-text p {
       font-size: 0.95rem;
-      line-height: 1.9;
+      line-height: 1.95;
       color: #a8a09a;
       font-weight: 300;
     }
 
-    .about p + p {
-      margin-top: 1.25rem;
+    .body-text p + p { margin-top: 1.5rem; }
+
+    .rule {
+      width: 40px;
+      height: 1px;
+      background: var(--red);
+      margin: 3rem 0;
     }
 
-    /* Divider */
-    .divider {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--red), transparent);
-      margin: 0 auto 4rem;
+    .location {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
+
+    /* Contact */
+    .contact-email {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      font-weight: 300;
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(139, 26, 26, 0.5);
+      padding-bottom: 0.25rem;
+      transition: border-color 0.3s;
+    }
+
+    .contact-email:hover { border-color: var(--red); }
 
     /* Footer */
     footer {
@@ -176,11 +205,7 @@
       border-top: 1px solid rgba(255,255,255,0.06);
     }
 
-    footer p {
-      font-size: 0.7rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-    }
+    footer p { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; }
 
     footer a {
       color: var(--muted);
@@ -190,38 +215,80 @@
       transition: color 0.3s;
     }
 
-    footer a:hover {
-      color: var(--white);
-    }
+    footer a:hover { color: var(--white); }
 
     @media (max-width: 600px) {
       nav { padding: 1.5rem; }
       nav ul { gap: 1.5rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .inner-page { padding: 3rem 1.5rem 4rem; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="file:///C:/Users/tyler/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/e5cbe29a-491b-4e44-b258-fcfb3e027cc1/93b2bbc7-4462-4d7f-8348-b1670c0175a2/local_8423bcd2-a5b2-4a09-81bb-be97a9750c29/outputs/index.html#" class="logo">Scary Romantic</a>
+    <span class="logo" onclick="showPage(&#39;home&#39;)">Scary Romantic</span>
     <ul>
       <li><a href="https://www.stringsofficial.com/" target="_blank" rel="noopener">Work</a></li>
-      <li><a href="file:///C:/Users/tyler/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/e5cbe29a-491b-4e44-b258-fcfb3e027cc1/93b2bbc7-4462-4d7f-8348-b1670c0175a2/local_8423bcd2-a5b2-4a09-81bb-be97a9750c29/outputs/about.html">About</a></li>
-      <li><a href="file:///C:/Users/tyler/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/e5cbe29a-491b-4e44-b258-fcfb3e027cc1/93b2bbc7-4462-4d7f-8348-b1670c0175a2/local_8423bcd2-a5b2-4a09-81bb-be97a9750c29/outputs/contact.html">Contact</a></li>
+      <li><a id="nav-about" onclick="showPage(&#39;about&#39;)">About</a></li>
+      <li><a id="nav-contact" onclick="showPage(&#39;contact&#39;)">Contact</a></li>
     </ul>
   </nav>
 
-  <main class="hero">
-    <h1 class="tagline">Where <em>darkness</em><br>meets desire.</h1>
-    <p class="sub">A feature film production company — Los Angeles</p>
-    <a href="https://www.stringsofficial.com/" target="_blank" rel="noopener" class="cta">View Our Work</a>
-  </main>
+  <!-- Home -->
+  <div id="page-home" class="page active">
+    <main class="hero">
+      <h1 class="tagline">Where <em>darkness</em><br>meets desire.</h1>
+      <p class="sub">A feature film production company — Los Angeles</p>
+      <a href="https://www.stringsofficial.com/" target="_blank" rel="noopener" class="cta">View Our Work</a>
+    </main>
+  </div>
+
+  <!-- About -->
+  <div id="page-about" class="page">
+    <div class="inner-page">
+      <div class="page-inner">
+        <p class="page-label">About</p>
+        <h1>Film that feels<br><em>undeniably real.</em></h1>
+        <div class="body-text">
+          <p>Scary Romantic is a feature film production company based in Los Angeles. We find and develop top-tier scripts built to resonate — stories rooted in authenticity, real-life themes, and the emotional undercurrents that modern audiences actually connect with.</p>
+          <p>We secure financing, get projects greenlit, and bring in the right producers and crew to execute at the highest level. Fully equipped with the latest technology and a creative edge that sets our work apart.</p>
+          <p>We understand the market and what people want. Every project we take on is driven by a commitment to craft, cultural relevance, and stories that hit close to home.</p>
+        </div>
+        <div class="rule"></div>
+        <p class="location">Los Angeles, CA</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div id="page-contact" class="page">
+    <div class="inner-page">
+      <div class="page-inner">
+        <p class="page-label">Contact</p>
+        <h1>Let's make<br>something <em>unforgettable.</em></h1>
+        <a href="mailto:contact@scaryromantic.com" class="contact-email">contact@scaryromantic.com</a>
+        <div class="rule"></div>
+        <p class="location">Los Angeles, CA</p>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <p>© 2026 Scary Romantic. All rights reserved.</p>
     <a href="mailto:contact@scaryromantic.com">contact@scaryromantic.com</a>
   </footer>
+
+  <script>
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      if (name === 'about') document.getElementById('nav-about').classList.add('active');
+      if (name === 'contact') document.getElementById('nav-contact').classList.add('active');
+    }
+  </script>
 
 
 
