@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<!-- saved from url=(0254)file:///C:/Users/tyler/AppData/Local/Packages/Claude_pzs8sxrjxfjjc/LocalCache/Roaming/Claude/local-agent-mode-sessions/e5cbe29a-491b-4e44-b258-fcfb3e027cc1/93b2bbc7-4462-4d7f-8348-b1670c0175a2/local_8423bcd2-a5b2-4a09-81bb-be97a9750c29/outputs/index.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scary Romantic</title>
   <style>
@@ -217,22 +216,74 @@
 
     footer a:hover { color: var(--white); }
 
+    /* Work */
+    .project-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+    }
+
+    .project {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .project-poster {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: border-color 0.3s, opacity 0.3s;
+    }
+
+    .project:hover .project-poster {
+      border-color: var(--red);
+      opacity: 0.85;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 1rem;
+    }
+
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 300;
+      color: var(--white);
+    }
+
+    .project-status {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
     @media (max-width: 600px) {
       nav { padding: 1.5rem; }
       nav ul { gap: 1.5rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
       .inner-page { padding: 3rem 1.5rem 4rem; }
+      .project-list { grid-template-columns: 1fr; gap: 2rem; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <span class="logo" onclick="showPage(&#39;home&#39;)">Scary Romantic</span>
+    <span class="logo" onclick="showPage('home')">Scary Romantic</span>
     <ul>
-      <li><a href="https://www.stringsofficial.com/" target="_blank" rel="noopener">Work</a></li>
-      <li><a id="nav-about" onclick="showPage(&#39;about&#39;)">About</a></li>
-      <li><a id="nav-contact" onclick="showPage(&#39;contact&#39;)">Contact</a></li>
+      <li><a id="nav-work" onclick="showPage('work')">Work</a></li>
+      <li><a id="nav-about" onclick="showPage('about')">About</a></li>
+      <li><a id="nav-contact" onclick="showPage('contact')">Contact</a></li>
     </ul>
   </nav>
 
@@ -241,8 +292,35 @@
     <main class="hero">
       <h1 class="tagline">Where <em>darkness</em><br>meets desire.</h1>
       <p class="sub">A feature film production company — Los Angeles</p>
-      <a href="https://www.stringsofficial.com/" target="_blank" rel="noopener" class="cta">View Our Work</a>
+      <a onclick="showPage('work')" class="cta">View Our Work</a>
     </main>
+  </div>
+
+  <!-- Work -->
+  <div id="page-work" class="page">
+    <div class="inner-page">
+      <div class="page-inner">
+        <p class="page-label">Work</p>
+        <div class="project-list">
+          <a class="project" href="https://www.stringsofficial.com/" target="_blank" rel="noopener">
+            <img class="project-poster" src="https://lh3.googleusercontent.com/sitesv/AA5AbUA3b9DIrAbDNAjv-Im3QWb7mzpPCWDGZDr_6DvOnHwVvJnhMFaSy6I8qOcpiezSUEb-zDQeV7lNmNdpa1b7UceOMImw9R3CSKcPy13MsUkOVB2yRCuMAOtgaqz9Z3g1UGX_wBoT3hUOWCEvg8E2mONCTMA80h6OMub3L63bSOMP1_KBCHuR11v28tqRPZc=w1280" alt="Strings poster">
+            <div class="project-meta">
+              <span class="project-title">Strings</span>
+              <span class="project-status">In Production</span>
+            </div>
+          </a>
+          <a class="project" href="https://www.5thofjulymovie.com/" target="_blank" rel="noopener">
+            <img class="project-poster" src="https://www.5thofjulymovie.com/images/cowboy-patriot.jpg" alt="5th of July poster">
+            <div class="project-meta">
+              <span class="project-title">5th of July</span>
+              <span class="project-status">In Production</span>
+            </div>
+          </a>
+        </div>
+        <div class="rule"></div>
+        <p class="location">Los Angeles, CA</p>
+      </div>
+    </div>
   </div>
 
   <!-- About -->
@@ -285,6 +363,7 @@
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
       document.getElementById('page-' + name).classList.add('active');
+      if (name === 'work') document.getElementById('nav-work').classList.add('active');
       if (name === 'about') document.getElementById('nav-about').classList.add('active');
       if (name === 'contact') document.getElementById('nav-contact').classList.add('active');
     }
