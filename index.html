@@ -283,6 +283,18 @@
       color: var(--red);
     }
 
+    .project-social {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 0.9rem;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+
+    .project-social:hover { color: var(--white); }
+
+    .project-social svg { width: 18px; height: 18px; }
+
     /* About (Home) */
     .about-section {
       padding: 1rem 2rem 6rem;
@@ -358,22 +370,32 @@
       <div class="projects-inner">
         <p class="page-label">Work</p>
         <div class="project-list">
-          <a class="project" href="https://www.stringsofficial.com/" target="_blank" rel="noopener">
-            <img class="project-poster" src="images/strings-poster.jpg" alt="Strings poster">
+          <div class="project">
+            <a href="https://www.stringsofficial.com/" target="_blank" rel="noopener">
+              <img class="project-poster" src="images/strings-poster.jpg" alt="Strings poster">
+            </a>
             <div class="project-meta">
               <span class="project-title">Strings</span>
               <span class="project-status">Post-Production</span>
             </div>
             <span class="project-genre">Music Drama</span>
-          </a>
-          <a class="project" href="https://www.5thofjulymovie.com/" target="_blank" rel="noopener">
-            <img class="project-poster" src="images/5thofjuly-poster.jpg" alt="5th of July poster">
+            <a class="project-social" href="https://www.instagram.com/stringsmovie" target="_blank" rel="noopener" aria-label="Strings on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
+          <div class="project">
+            <a href="https://www.5thofjulymovie.com/" target="_blank" rel="noopener">
+              <img class="project-poster" src="images/5thofjuly-poster.jpg" alt="5th of July poster">
+            </a>
             <div class="project-meta">
               <span class="project-title">5th of July</span>
               <span class="project-status">In Production</span>
             </div>
             <span class="project-genre">Horror / Thriller</span>
-          </a>
+            <a class="project-social" href="https://www.instagram.com/5thofjulymovie" target="_blank" rel="noopener" aria-label="5th of July on Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -408,7 +430,7 @@
   <section class="founder">
     <img class="founder-photo" src="images/tylerforrest.jpg" alt="Tyler Forrest">
     <p class="founder-quote">"Making movies is an art that will never die."</p>
-    <p class="founder-name">Tyler Forrest - Founder</p>
+    <p class="founder-name">Tyler Forrest</p>
   </section>
 
   <footer>
