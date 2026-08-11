@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE SMELL — A Coroner Horror-Thriller</title>
+<meta name="description" content="A disgraced coroner uncovers a predatory entity heralded by an impossibly foul odor. Once it hits your lungs, you have hours to live.">
+<meta property="og:title" content="THE SMELL">
+<meta property="og:description" content="Once it's in your lungs, the clock starts.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Special+Elite&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b07;
+    --bg2:#131409;
+    --bg3:#1a1c10;
+    --accent:#a9c23f;
+    --accent-dim:#5c6b28;
+    --rust:#8a5a3c;
+    --text:#dcd8c4;
+    --text-dim:#8b8a76;
+    --line:#2a2c1c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Oswald',sans-serif;
+    font-weight:400;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-weight:400;}
+  a{color:inherit;text-decoration:none;}
+  .report{font-family:'Special Elite',monospace;}
+  .container{max-width:1100px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'Special Elite',monospace;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:4px;
+    font-size:0.75rem;
+    display:block;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{content:"— ";}
+  .eyebrow::after{content:" —";}
+
+  /* grain overlay */
+  .grain{
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:9999;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* drifting miasma layer */
+  .miasma{
+    position:fixed;inset:-10% -20%;
+    pointer-events:none;
+    z-index:1;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 30%, rgba(169,194,63,0.07), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 80% 70%, rgba(138,90,60,0.06), transparent 60%);
+    animation:drift 40s ease-in-out infinite alternate;
+  }
+  @keyframes drift{
+    0%{transform:translateX(-3%) translateY(0%);}
+    100%{transform:translateX(3%) translateY(2%);}
+  }
+
+  /* nav */
+  header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(10,11,7,0.75);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    transition:background .3s;
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    max-width:1100px;margin:0 auto;padding:16px 24px;
+  }
+  .brand{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.4rem;
+    letter-spacing:5px;
+    color:var(--text);
+  }
+  .brand span{color:var(--accent);}
+  .navlinks{
+    display:flex;gap:26px;
+    list-style:none;
+    font-size:0.78rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+  }
+  .navlinks a{
+    color:var(--text-dim);
+    transition:color .25s;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .navlinks a:hover{color:var(--accent);}
+  .navtoggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;}
+  .navtoggle span{width:24px;height:2px;background:var(--text);}
+
+  @media (max-width:820px){
+    .navlinks{
+      position:fixed;top:60px;left:0;right:0;
+      background:var(--bg2);
+      flex-direction:column;
+      padding:20px 24px;
+      gap:16px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-150%);
+      transition:transform .3s ease;
+    }
+    .navlinks.open{transform:translateY(0);}
+    .navtoggle{display:flex;}
+  }
+
+  /* hero */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:120px 24px 60px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 20%, rgba(169,194,63,0.08), transparent 70%),
+      linear-gradient(180deg, #0a0b07 0%, #101208 55%, #0a0b07 100%);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background:
+      linear-gradient(0deg, rgba(10,11,7,1) 0%, transparent 40%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 6px);
+    pointer-events:none;
+  }
+  .hero-tag{
+    font-family:'Special Elite',monospace;
+    color:var(--text-dim);
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:0.8rem;
+    margin-bottom:18px;
+    z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(4.2rem, 14vw, 9.5rem);
+    line-height:0.9;
+    color:var(--text);
+    text-shadow:0 0 40px rgba(169,194,63,0.25), 0 4px 0 rgba(0,0,0,0.6);
+    z-index:2;
+  }
+  .hero h1 .flicker{color:var(--accent);animation:flicker 6s infinite;}
+  @keyframes flicker{
+    0%,3%,6%,100%{opacity:1;}
+    4%{opacity:0.4;}
+    5%{opacity:0.85;}
+  }
+  .hero-sub{
+    font-family:'Special Elite',monospace;
+    font-size:1rem;
+    color:var(--accent);
+    margin-top:18px;
+    max-width:560px;
+    z-index:2;
+    line-height:1.6;
+  }
+  .hero-logline{
+    color:var(--text-dim);
+    max-width:620px;
+    margin-top:16px;
+    font-size:0.95rem;
+    line-height:1.7;
+    z-index:2;
+  }
+  .cta-row{
+    display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+    margin-top:36px;
+    z-index:2;
+  }
+  .btn{
+    padding:14px 28px;
+    font-family:'Oswald',sans-serif;
+    font-size:0.82rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    border:1px solid var(--accent-dim);
+    transition:all .25s;
+  }
+  .btn-solid{background:var(--accent);color:#0a0b07;border-color:var(--accent);font-weight:600;}
+  .btn-solid:hover{background:#c1db5e;}
+  .btn-outline{color:var(--text);}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    font-family:'Special Elite',monospace;
+    font-size:0.7rem;color:var(--text-dim);
+    letter-spacing:2px;text-transform:uppercase;
+    z-index:2;
+  }
+  .scroll-cue::after{
+    content:"";display:block;width:1px;height:30px;background:var(--accent-dim);
+    margin:8px auto 0;animation:scrolldown 2s infinite;
+  }
+  @keyframes scrolldown{0%{opacity:0;transform:translateY(-6px);}50%{opacity:1;}100%{opacity:0;transform:translateY(10px);}}
+
+  section{position:relative;z-index:2;padding:110px 0;}
+  section:not(.hero) + section{border-top:1px solid var(--line);}
+
+  /* poster */
+  .poster-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;}
+  @media (max-width:860px){.poster-wrap{grid-template-columns:1fr;}}
+  .poster-card{
+    aspect-ratio:2/3;
+    position:relative;
+    background:
+      linear-gradient(180deg, rgba(169,194,63,0.12), transparent 40%),
+      linear-gradient(0deg, #050603 0%, #0e0f09 45%, #171a0e 100%);
+    border:1px solid var(--line);
+    overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:30px;
+  }
+  .poster-card::before{
+    content:"";
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 90% 50% at 50% 100%, rgba(0,0,0,0.7), transparent 60%),
+      repeating-linear-gradient(180deg, transparent 0 3px, rgba(255,255,255,0.015) 3px 4px);
+  }
+  .poster-mtns{
+    position:absolute;bottom:0;left:0;right:0;height:38%;
+    background:#050603;
+    clip-path:polygon(0% 100%, 0% 60%, 15% 45%, 30% 65%, 45% 30%, 60% 55%, 78% 20%, 90% 50%, 100% 40%, 100% 100%);
+  }
+  .poster-fog{
+    position:absolute;bottom:0;left:0;right:0;height:45%;
+    background:linear-gradient(0deg, rgba(169,194,63,0.10), transparent 100%);
+  }
+  .poster-content{position:relative;z-index:2;}
+  .poster-content h2{font-size:2.6rem;color:var(--text);}
+  .poster-content .genre{
+    font-family:'Special Elite',monospace;
+    color:var(--accent);
+    font-size:0.75rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:block;
+  }
+  .poster-content .tag{
+    font-family:'Special Elite',monospace;
+    color:var(--text-dim);
+    font-size:0.85rem;
+    margin-top:10px;
+    font-style:italic;
+  }
+
+  .synopsis h2{font-size:2.6rem;margin-bottom:22px;}
+  .logline-box{
+    border-left:3px solid var(--accent);
+    padding:18px 24px;
+    background:rgba(169,194,63,0.04);
+    font-family:'Special Elite',monospace;
+    color:var(--text);
+    font-size:0.95rem;
+    line-height:1.7;
+    margin-bottom:26px;
+  }
+  .synopsis p{
+    color:var(--text-dim);
+    line-height:1.85;
+    margin-bottom:16px;
+    font-size:0.98rem;
+  }
+  .synopsis p strong{color:var(--accent);font-weight:600;}
+
+  /* entity section */
+  .entity{background:var(--bg2);}
+  .entity-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  @media (max-width:860px){.entity-wrap{grid-template-columns:1fr;}}
+  .entity-visual{
+    aspect-ratio:1/1;
+    position:relative;
+    background:radial-gradient(circle at 50% 50%, rgba(169,194,63,0.15), #0a0b07 70%);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .entity-visual .ring{
+    width:70%;height:70%;border:1px solid var(--accent-dim);border-radius:50%;
+    position:relative;
+    animation:pulse 5s ease-in-out infinite;
+  }
+  .entity-visual .ring::before{
+    content:"?";
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bebas Neue',sans-serif;font-size:5rem;color:var(--accent-dim);
+  }
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(169,194,63,0.12);}50%{box-shadow:0 0 0 24px rgba(169,194,63,0);}}
+  .entity h2{font-size:2.6rem;}
+  .entity blockquote{
+    font-family:'Special Elite',monospace;
+    color:var(--accent);
+    font-size:1.15rem;
+    margin:18px 0 22px;
+    font-style:italic;
+  }
+  .entity p{color:var(--text-dim);line-height:1.85;margin-bottom:16px;font-size:0.98rem;}
+  .facts{list-style:none;margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .facts li{border-top:1px solid var(--line);padding-top:10px;}
+  .facts li .label{font-family:'Special Elite',monospace;font-size:0.7rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:2px;display:block;margin-bottom:4px;}
+  .facts li .val{font-size:0.95rem;color:var(--text);}
+
+  /* investigation / characters */
+  .cast-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:50px;}
+  @media (max-width:860px){.cast-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.cast-grid{grid-template-columns:1fr;}}
+  .cast-card{border-top:1px solid var(--line);padding-top:20px;}
+  .avatar{
+    width:56px;height:56px;border-radius:50%;
+    border:1px solid var(--accent-dim);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--accent);
+    margin-bottom:16px;
+  }
+  .cast-card h3{font-size:1.5rem;color:var(--text);}
+  .cast-card .role{font-family:'Special Elite',monospace;color:var(--accent);font-size:0.75rem;text-transform:uppercase;letter-spacing:2px;display:block;margin:6px 0 12px;}
+  .cast-card p{color:var(--text-dim);font-size:0.9rem;line-height:1.7;}
+
+  /* trailer */
+  .trailer-box{
+    border:1px dashed var(--accent-dim);
+    padding:60px 30px;
+    text-align:center;
+    background:repeating-linear-gradient(135deg, rgba(169,194,63,0.02) 0 10px, transparent 10px 20px);
+  }
+  .trailer-box .stamp{
+    display:inline-block;
+    font-family:'Special Elite',monospace;
+    color:var(--accent);
+    border:2px solid var(--accent);
+    padding:6px 18px;
+    letter-spacing:4px;
+    font-size:0.85rem;
+    transform:rotate(-3deg);
+    margin-bottom:22px;
+  }
+  .trailer-box h3{font-size:2.2rem;margin-bottom:10px;}
+  .trailer-box p{color:var(--text-dim);font-family:'Special Elite',monospace;font-size:0.85rem;}
+  .play-btn{
+    width:74px;height:74px;border-radius:50%;
+    border:1px solid var(--accent-dim);
+    display:flex;align-items:center;justify-content:center;
+    margin:26px auto 0;
+    color:var(--accent);font-size:1.3rem;
+  }
+
+  /* locations */
+  .loc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:50px;}
+  @media (max-width:860px){.loc-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.loc-grid{grid-template-columns:1fr;}}
+  .loc-card{border:1px solid var(--line);}
+  .loc-thumb{
+    height:140px;
+    background:linear-gradient(160deg, var(--bg3), #050603);
+    position:relative;
+    overflow:hidden;
+  }
+  .loc-thumb::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(0deg, rgba(169,194,63,0.08), transparent 70%);
+  }
+  .loc-1{background:linear-gradient(160deg,#171a0e,#050603);}
+  .loc-2{background:linear-gradient(160deg,#12140b,#05060300);}
+  .loc-3{background:linear-gradient(160deg,#1a1608,#05060300);}
+  .loc-4{background:linear-gradient(160deg,#0e130a,#05060300);}
+  .loc-info{padding:16px 18px 22px;}
+  .loc-info h3{font-size:1.3rem;color:var(--text);}
+  .loc-info p{color:var(--text-dim);font-size:0.85rem;margin-top:8px;line-height:1.6;}
+
+  /* footer */
+  footer{
+    padding:70px 0 40px;
+    text-align:center;
+    background:var(--bg2);
+    border-top:1px solid var(--line);
+  }
+  footer h2{font-size:2.4rem;}
+  footer .foot-tag{color:var(--accent);font-family:'Special Elite',monospace;margin-top:8px;font-size:0.9rem;}
+  footer .credit{margin-top:36px;color:var(--text-dim);font-size:0.85rem;line-height:2;}
+  footer .credit a{color:var(--accent);}
+  footer .banner{margin-top:6px;font-family:'Special Elite',monospace;font-style:italic;color:var(--text-dim);font-size:0.8rem;}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="miasma"></div>
+
+<header>
+  <nav>
+    <a href="#top" class="brand">THE&nbsp;<span>SMELL</span></a>
+    <button class="navtoggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <ul class="navlinks" id="navLinks">
+      <li><a href="#poster">Poster</a></li>
+      <li><a href="#synopsis">Case File</a></li>
+      <li><a href="#entity">The Smell</a></li>
+      <li><a href="#investigation">The Investigation</a></li>
+      <li><a href="#trailer">Teaser</a></li>
+      <li><a href="#locations">Locations</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <span class="hero-tag">Something Is Coming Down The Mountain</span>
+  <h1>THE <span class="flicker">SMELL</span></h1>
+  <p class="hero-sub">Once it's in your lungs, the clock starts.</p>
+  <p class="hero-logline">A disgraced coroner investigates a string of horrific, unexplained deaths in an isolated mountain town — and finds every victim was marked first by an impossibly foul, otherworldly stench. You don't hear it coming. You smell it.</p>
+  <div class="cta-row">
+    <a href="#trailer" class="btn btn-solid">Watch the Teaser</a>
+    <a href="#synopsis" class="btn btn-outline">Read the Case File</a>
+  </div>
+  <span class="scroll-cue">Keep Breathing</span>
+</section>
+
+<section id="poster">
+  <div class="container poster-wrap reveal">
+    <div class="poster-card">
+      <div class="poster-fog"></div>
+      <div class="poster-mtns"></div>
+      <div class="poster-content">
+        <span class="genre">Horror · Thriller</span>
+        <h2>THE SMELL</h2>
+        <p class="tag">"Some things you can't unsmell."</p>
+      </div>
+    </div>
+    <div>
+      <span class="eyebrow">Coroner's Case #0447</span>
+      <h2 style="font-size:2.6rem;margin-bottom:18px;">Every Body Tells a Story. This One Screams.</h2>
+      <p style="color:var(--text-dim);line-height:1.85;">No wounds. No struggle. No cause of death that makes sense on paper. Just a smell that lingers in the room long after the body's gone cold — and gets worse every time someone tries to explain it away.</p>
+    </div>
+  </div>
+</section>
+
+<section id="synopsis" class="synopsis">
+  <div class="container reveal">
+    <span class="eyebrow">The Story</span>
+    <h2>It Doesn't Knock. It Doesn't Chase. It Just Waits For You To Breathe.</h2>
+    <div class="logline-box">
+      LOGLINE: When a disgraced coroner investigates a string of horrific, unexplained fatalities in an isolated mountain town, he discovers victims are being targeted by a predatory entity heralded by an impossibly foul, otherworldly stench — and once that rancid odor hits your lungs, you have mere hours before it brutally claims your life.
+    </div>
+    <p>Three years removed from the scandal that ended his career, <strong>coroner Silas Wren</strong> takes the only job left that will have him: filling in for the county examiner in Halloway's Gap, a mountain town of four hundred people that's just recorded its fifth unexplained death in six weeks. No trauma. No toxicology hits. Just a smell in the lungs so foul the responding officers threw up at the scene.</p>
+    <p>Wren tells himself it's methane, mold, decomposition gas — anything with a name. But the survivors describe the same thing: a wrongness in the air that arrives before anything else does, and once you've smelled it, you're already on the clock. Hours, not days. And it always finds you again.</p>
+    <p>As Wren digs deeper — through town records, church basements, and the mountain hollow the locals won't name after dark — he realizes Halloway's Gap has been feeding something for a very long time, and the town's silence has always been the price of staying alive. Now the smell is spreading toward the valley, and Wren has to solve what a decade of coroners couldn't: not how these people died, but <strong>what's still hungry</strong>.</p>
+  </div>
+</section>
+
+<section id="entity" class="entity">
+  <div class="container entity-wrap reveal">
+    <div class="entity-visual"><div class="ring"></div></div>
+    <div>
+      <span class="eyebrow">The Threat</span>
+      <h2>It Has No Name. Only A Smell.</h2>
+      <blockquote>"You won't see it coming. You'll just notice you're the only one who can still smell the room."</blockquote>
+      <p>Nobody in Halloway's Gap has ever seen it and lived long enough to describe it clearly. What they agree on is the smell — rot and ozone and something sweetly wrong underneath, a stench that gets stronger the more attention you pay to it, as if it feeds on being noticed.</p>
+      <p>It doesn't stalk. It doesn't need to. Once the smell reaches you, you're already marked, and there is nowhere in Halloway's Gap far enough to outrun a scent that's already inside your chest.</p>
+      <ul class="facts">
+        <li><span class="label">First Sign</span><span class="val">An odor no one else nearby can smell</span></li>
+        <li><span class="label">Countdown</span><span class="val">Hours, not days, once inhaled</span></li>
+        <li><span class="label">Known Weakness</span><span class="val">None confirmed</span></li>
+        <li><span class="label">Origin</span><span class="val">Older than the town itself</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="investigation">
+  <div class="container reveal">
+    <span class="eyebrow">Who's Still Breathing</span>
+    <h2 style="font-size:2.6rem;">The Investigation</h2>
+    <div class="cast-grid">
+      <div class="cast-card">
+        <div class="avatar">S</div>
+        <h3>Silas Wren</h3>
+        <span class="role">The Disgraced Coroner</span>
+        <p>Lost his license, his reputation, and nearly his family after a call he still swears he got right. Halloway's Gap is his last chance to prove it — if the smell doesn't get to him first.</p>
+      </div>
+      <div class="cast-card">
+        <div class="avatar">C</div>
+        <h3>Deputy Cass Ambrose</h3>
+        <span class="role">The Skeptic</span>
+        <p>Third-generation local law who's spent her whole career writing the deaths up as animal attacks. She stops believing her own reports the night she smells it herself.</p>
+      </div>
+      <div class="cast-card">
+        <div class="avatar">A</div>
+        <h3>Reverend Aldous Pike</h3>
+        <span class="role">The True Believer</span>
+        <p>Keeper of the church basement records nobody's supposed to read. He knows exactly what's in the hollow — and exactly what it costs to keep it fed.</p>
+      </div>
+      <div class="cast-card">
+        <div class="avatar">N</div>
+        <h3>Nora Ashford</h3>
+        <span class="role">The Survivor</span>
+        <p>Buried her husband three weeks ago and has slept with the windows sealed ever since. The only person in town willing to say the word "it" out loud.</p>
+      </div>
+      <div class="cast-card">
+        <div class="avatar">T</div>
+        <h3>Old Man Teague</h3>
+        <span class="role">The Witness</span>
+        <p>Smelled it once, decades ago, and lived. Nobody in town will say how. He's been waiting fifty years for someone to finally ask him the right question.</p>
+      </div>
+      <div class="cast-card">
+        <div class="avatar">P</div>
+        <h3>Dr. Priya Kade</h3>
+        <span class="role">The Colleague</span>
+        <p>Sent Wren the case file against her better judgment. Now she's the only voice on the phone at 3 a.m. willing to believe what he's finding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trailer">
+  <div class="container reveal" style="text-align:center;">
+    <span class="eyebrow">Coming Soon</span>
+    <div class="trailer-box">
+      <span class="stamp">SEALED</span>
+      <h3>Teaser Trailer — Classified</h3>
+      <p>STATUS: PENDING RELEASE · RUNTIME: 01:47 · CLEARANCE REQUIRED</p>
+      <div class="play-btn">&#9658;</div>
+    </div>
+  </div>
+</section>
+
+<section id="locations">
+  <div class="container reveal">
+    <span class="eyebrow">Where It Hunts</span>
+    <h2 style="font-size:2.6rem;">Locations</h2>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="loc-thumb loc-1"></div>
+        <div class="loc-info">
+          <h3>The Morgue</h3>
+          <p>Fluorescent lights and a smell no ventilation system has ever fully cleared.</p>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-thumb loc-2"></div>
+        <div class="loc-info">
+          <h3>Hollow Pines</h3>
+          <p>The tree line the locals won't cross after sundown, for reasons they won't explain.</p>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-thumb loc-3"></div>
+        <div class="loc-info">
+          <h3>The Old Church</h3>
+          <p>A basement full of records the town has been rewriting for a hundred years.</p>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-thumb loc-4"></div>
+        <div class="loc-info">
+          <h3>Route 9 Switchback</h3>
+          <p>One road down the mountain. It's never further away than it feels.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container reveal">
+    <h2>THE SMELL</h2>
+    <p class="foot-tag">Once it's in your lungs, the clock starts.</p>
+    <div class="credit">
+      Written by <strong>Rowdy Hop</strong><br>
+      <a href="mailto:tyleraforrest@gmail.com">tyleraforrest@gmail.com</a>
+    </div>
+    <div class="banner">A Scary Romantic Production · © 2026 Scary Romantic. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
