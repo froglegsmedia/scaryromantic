@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THEO'S PIANO — A Supernatural Psychological Thriller</title>
+<meta name="description" content="THEO'S PIANO — a supernatural psychological thriller feature film written by Tyler Forrest. A washed-up pianist inherits a haunted 1880s piano that turns him into a genius — and slowly consumes his mind.">
+<style>
+  :root{
+    --bg:#0a0806;
+    --bg-alt:#100c09;
+    --ink:#ece4d6;
+    --ink-dim:#a89c8a;
+    --ink-faint:#6b6053;
+    --accent:#8a1414;
+    --accent-bright:#b3241f;
+    --line:rgba(236,228,214,0.14);
+    --serif: 'Georgia', 'Iowan Old Style', 'Times New Roman', serif;
+    --sans: 'Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent); color:#fff;}
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 6vw;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6vw;
+    font-family:var(--sans);
+    letter-spacing:0.18em;
+    font-size:11px;
+    text-transform:uppercase;
+    background:linear-gradient(to bottom, rgba(10,8,6,0.85), transparent);
+    transition:background .3s ease;
+  }
+  header.nav .brand{
+    font-family:var(--serif);
+    letter-spacing:0.12em;
+    font-size:15px;
+    color:var(--ink);
+    text-transform:none;
+  }
+  header.nav nav a{
+    text-decoration:none;
+    color:var(--ink-dim);
+    margin-left:28px;
+    transition:color .25s ease;
+  }
+  header.nav nav a:hover{color:var(--accent-bright);}
+  header.nav nav{display:flex;}
+  @media (max-width:640px){
+    header.nav nav{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    height:100vh;
+    min-height:640px;
+    display:flex;
+    align-items:flex-end;
+    background-image:
+      linear-gradient(to bottom, rgba(10,8,6,0.35) 0%, rgba(10,8,6,0.35) 40%, rgba(10,8,6,0.95) 100%),
+      url('images/dark-room-piano.jpg');
+    background-size:cover;
+    background-position:center 30%;
+  }
+  .hero-inner{
+    width:100%;
+    padding:0 6vw 9vh;
+  }
+  .hero-eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    color:var(--accent-bright);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(48px, 10vw, 110px);
+    letter-spacing:0.05em;
+    font-weight:400;
+    line-height:0.95;
+    text-transform:uppercase;
+    color:var(--ink);
+    text-shadow:0 4px 40px rgba(0,0,0,0.6);
+  }
+  .hero-sub{
+    margin-top:20px;
+    max-width:560px;
+    font-size:18px;
+    color:var(--ink-dim);
+    font-style:italic;
+  }
+  .scroll-cue{
+    position:absolute;
+    bottom:26px;
+    left:6vw;
+    font-family:var(--sans);
+    font-size:10px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .scroll-cue::after{
+    content:"";
+    width:1px;
+    height:34px;
+    background:linear-gradient(to bottom, var(--ink-faint), transparent);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:.3;}
+    50%{opacity:1;}
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{
+    padding:120px 0;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--accent-bright);
+    margin-bottom:18px;
+  }
+  h2.section-title{
+    font-size:clamp(30px,4vw,48px);
+    font-weight:400;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    margin-bottom:40px;
+    max-width:760px;
+  }
+  .rule{
+    width:60px;
+    height:1px;
+    background:var(--accent);
+    margin:28px 0;
+  }
+
+  /* ---------- LOGLINE ---------- */
+  .logline{
+    background:var(--bg-alt);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .logline p{
+    font-size:clamp(22px,3vw,32px);
+    line-height:1.5;
+    max-width:900px;
+    color:var(--ink);
+    font-weight:400;
+  }
+  .logline p em{color:var(--accent-bright); font-style:normal;}
+
+  /* ---------- SYNOPSIS / ACT CARDS ---------- */
+  .synopsis-block{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    margin-bottom:60px;
+  }
+  @media (max-width:800px){
+    .synopsis-block{grid-template-columns:1fr;}
+  }
+  .synopsis-block img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(15%) contrast(1.05);
+    display:block;
+  }
+  .synopsis-text h3{
+    font-size:13px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:16px;
+    font-family:var(--sans);
+  }
+  .synopsis-text p{
+    color:var(--ink-dim);
+    font-size:16.5px;
+    margin-bottom:16px;
+  }
+
+  .acts{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:20px;
+  }
+  @media (max-width:800px){
+    .acts{grid-template-columns:1fr;}
+  }
+  .act{
+    background:var(--bg);
+    padding:34px 28px;
+  }
+  .act .tag{
+    font-family:var(--sans);
+    font-size:10px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--accent-bright);
+    margin-bottom:14px;
+  }
+  .act p{
+    color:var(--ink-dim);
+    font-size:15px;
+  }
+
+  /* ---------- WORLD / GENRE ---------- */
+  .world{
+    background:var(--bg-alt);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .world-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:50px;
+  }
+  @media (max-width:800px){
+    .world-grid{grid-template-columns:1fr; gap:40px;}
+  }
+  .world-grid h4{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--accent-bright);
+    margin-bottom:14px;
+  }
+  .world-grid p{
+    color:var(--ink-dim);
+    font-size:16px;
+  }
+
+  /* ---------- LEADS ---------- */
+  .leads{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2px;
+    background:var(--line);
+  }
+  @media (max-width:800px){
+    .leads{grid-template-columns:1fr;}
+  }
+  .lead-card{
+    position:relative;
+    background:#000;
+    min-height:520px;
+    display:flex;
+    align-items:flex-end;
+  }
+  .lead-card img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0.75;
+  }
+  .lead-card .overlay{
+    position:relative;
+    z-index:2;
+    padding:36px;
+    background:linear-gradient(to top, rgba(10,8,6,0.95) 10%, transparent 70%);
+    width:100%;
+  }
+  .lead-card .role{
+    font-family:var(--sans);
+    font-size:10px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--accent-bright);
+    margin-bottom:8px;
+  }
+  .lead-card h3{
+    font-size:28px;
+    font-weight:400;
+    margin-bottom:12px;
+  }
+  .lead-card p{
+    color:var(--ink-dim);
+    font-size:15px;
+    max-width:440px;
+  }
+
+  /* ---------- SUPPORTING CAST ---------- */
+  .cast-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:2px;
+    background:var(--line);
+  }
+  @media (max-width:900px){
+    .cast-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  .cast-card{
+    background:var(--bg);
+    position:relative;
+    overflow:hidden;
+  }
+  .cast-card .imgwrap{
+    aspect-ratio:3/4;
+    overflow:hidden;
+  }
+  .cast-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(60%);
+    transition:filter .4s ease, transform .5s ease;
+  }
+  .cast-card:hover img{
+    filter:grayscale(0%);
+    transform:scale(1.04);
+  }
+  .cast-card .info{
+    padding:20px;
+  }
+  .cast-card .tag{
+    font-family:var(--sans);
+    font-size:9.5px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--accent-bright);
+    margin-bottom:6px;
+  }
+  .cast-card h4{
+    font-size:18px;
+    font-weight:400;
+    margin-bottom:8px;
+  }
+  .cast-card p{
+    font-size:13.5px;
+    color:var(--ink-dim);
+    line-height:1.5;
+  }
+
+  /* ---------- THEMES ---------- */
+  .themes{
+    background:var(--bg-alt);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .theme-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px 60px;
+  }
+  @media (max-width:800px){
+    .theme-list{grid-template-columns:1fr;}
+  }
+  .theme-item{
+    display:flex;
+    gap:20px;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--line);
+  }
+  .theme-item .num{
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--accent-bright);
+    letter-spacing:0.1em;
+    padding-top:2px;
+  }
+  .theme-item h4{
+    font-size:19px;
+    font-weight:400;
+    margin-bottom:6px;
+  }
+  .theme-item p{
+    color:var(--ink-dim);
+    font-size:15px;
+  }
+
+  /* ---------- STILLS STRIP ---------- */
+  .stills-strip{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:2px;
+    background:var(--line);
+  }
+  @media (max-width:800px){
+    .stills-strip{grid-template-columns:repeat(3,1fr);}
+  }
+  .stills-strip .cell{
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:#000;
+  }
+  .stills-strip img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:grayscale(35%);
+    opacity:0.85;
+    transition:opacity .35s ease, filter .35s ease;
+  }
+  .stills-strip .cell:hover img{
+    opacity:1;
+    filter:grayscale(0%);
+  }
+
+  /* ---------- READY TO MAKE ---------- */
+  .ready-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media (max-width:800px){
+    .ready-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  .ready-card{
+    background:var(--bg);
+    padding:32px 24px;
+  }
+  .ready-card h4{
+    font-size:16px;
+    font-weight:400;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .ready-card p{
+    color:var(--ink-dim);
+    font-size:14px;
+  }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  .contact{
+    position:relative;
+    padding:150px 0 90px;
+    background-image:
+      linear-gradient(to bottom, rgba(10,8,6,0.55), rgba(10,8,6,0.96)),
+      url('images/piano-burning.jpg');
+    background-size:cover;
+    background-position:center 25%;
+    text-align:center;
+  }
+  .contact h2{
+    font-size:clamp(30px,5vw,50px);
+    text-transform:uppercase;
+    font-weight:400;
+    letter-spacing:0.04em;
+    margin-bottom:22px;
+  }
+  .contact p.tag{
+    color:var(--ink-dim);
+    font-size:16px;
+    margin-bottom:40px;
+  }
+  .contact-details{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+    font-family:var(--sans);
+    letter-spacing:0.05em;
+  }
+  .contact-details a{
+    text-decoration:none;
+    font-size:15px;
+    color:var(--ink);
+    border-bottom:1px solid var(--accent);
+    padding-bottom:2px;
+    transition:color .25s ease;
+  }
+  .contact-details a:hover{color:var(--accent-bright);}
+  .contact-details .writer{
+    margin-top:26px;
+    color:var(--ink-faint);
+    font-size:12px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+  }
+
+  footer{
+    padding:30px 6vw;
+    text-align:center;
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--ink-faint);
+    border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="brand">THEO'S PIANO</div>
+  <nav>
+    <a href="#synopsis">Synopsis</a>
+    <a href="#world">The World</a>
+    <a href="#leads">Cast</a>
+    <a href="#themes">Themes</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">A Supernatural Psychological Thriller</div>
+    <h1>Theo's&nbsp;Piano</h1>
+    <p class="hero-sub">Written by Tyler Forrest — Feature Film Pitch</p>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</section>
+
+<section class="logline wrap">
+  <div class="eyebrow">The Inheritance</div>
+  <p>A washed-up, mediocre pianist inherits a haunted 1880s piano that instantly turns him into a musical genius — but as he rises to fame, <em>the vengeful spirit of the instrument's original owner slowly consumes his mind</em>, driving him to destroy everyone in his path before he can destroy the piano itself.</p>
+</section>
+
+<section id="synopsis" class="wrap">
+  <div class="eyebrow">Genius by Possession</div>
+  <h2 class="section-title">Synopsis</h2>
+
+  <div class="synopsis-block">
+    <img src="images/henry-pub-piano.jpg" alt="Henry playing piano in a smoky pub">
+    <div class="synopsis-text">
+      <h3>The Setup</h3>
+      <p>Henry Longbottom is a mediocre 39-year-old pianist stuck writing jingles and playing covers at a dead-end pub gig, resentful that talent never came easy to him. When his wife's aunt offers him a dusty antique baby grand, he doesn't realize it once belonged to Theodore Chambers — a 19th-century prodigy who shot himself at its keys after losing his gift and his spotlight to a younger star.</p>
+      <p>A mysterious fall at the keys leaves him with perfect pitch and virtuoso technique he never had — and a hunger for fame he can no longer control. The transformation comes with migraines, blackouts, and hallucinations of himself with a bullet in his head.</p>
+    </div>
+  </div>
+
+  <div class="synopsis-block">
+    <div class="synopsis-text">
+      <h3>The Descent</h3>
+      <p>As Henry's cruelty alienates his wife Victoria and a new flame, Miranda, a younger prodigy is brought in to replace him — and his obsession curdles into stalking, assault, and an attempted on-stage murder, mirroring the exact crime Theo committed a century before.</p>
+      <p>Miranda uncovers Theo's history and destroys the piano to save Henry's life; he finishes the job by setting it on fire, expelling the spirit. Arrested and institutionalized, Henry emerges three months later humbled — until a piece of the piano turns up again in a junkyard.</p>
+    </div>
+    <img src="images/piano-burning.jpg" alt="The haunted piano burning">
+  </div>
+
+  <div class="acts">
+    <div class="act">
+      <div class="tag">Inciting Incident</div>
+      <p>Henry inherits the haunted 1880s piano no one else wanted.</p>
+    </div>
+    <div class="act">
+      <div class="tag">The Turn</div>
+      <p>A fall at the keys leaves him a musical genius overnight.</p>
+    </div>
+    <div class="act">
+      <div class="tag">Midpoint</div>
+      <p>A Grand Symphony residency launches him to stardom.</p>
+    </div>
+    <div class="act">
+      <div class="tag">Crisis</div>
+      <p>A rival replaces Henry; Theo's spirit demands blood.</p>
+    </div>
+    <div class="act">
+      <div class="tag">Climax</div>
+      <p>Henry holds a gun on stage — the piano is destroyed.</p>
+    </div>
+    <div class="act">
+      <div class="tag">Resolution</div>
+      <p>Institutionalized and humbled, Henry chooses his old life back.</p>
+    </div>
+  </div>
+</section>
+
+<section id="world" class="world">
+  <div class="wrap">
+    <div class="eyebrow">Genre · Tone · Comparables</div>
+    <h2 class="section-title">The World of the Film</h2>
+    <div class="world-grid">
+      <div>
+        <h4>Genre</h4>
+        <p>Supernatural psychological thriller — a possession story where the real monster is ambition itself.</p>
+      </div>
+      <div>
+        <h4>Tone</h4>
+        <p>Dark and character-driven, wry in its opening act, tightening into dread as the possession takes hold.</p>
+      </div>
+      <div>
+        <h4>Comparables</h4>
+        <p><em>Whiplash</em> meets <em>The Shining</em>, with the body-horror-of-ambition of <em>Black Swan</em>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leads" class="wrap">
+  <div class="eyebrow">The Leads</div>
+  <h2 class="section-title">Henry &amp; Theo</h2>
+  <div class="leads">
+    <div class="lead-card">
+      <img src="images/henry-cracked-mirror.jpg" alt="Henry Longbottom staring into a cracked mirror">
+      <div class="overlay">
+        <div class="role">Protagonist</div>
+        <h3>Henry Longbottom</h3>
+        <p>A late-30s jingle composer and failed pub musician whose insecurity is his whole identity. Possession turns that insecurity into arrogance and violence — before humbling him back to who he really is.</p>
+      </div>
+    </div>
+    <div class="lead-card">
+      <img src="images/theo-grin.jpg" alt="Theodore Chambers, the ghost antagonist, at the piano">
+      <div class="overlay">
+        <div class="role">The Ghost · Antagonist</div>
+        <h3>Theodore "Theo" Chambers</h3>
+        <p>An 1880s piano prodigy destroyed by his own replacement and dead by his own hand. A perfectionist repeating his exact crimes a century later — through Henry's body.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="eyebrow">The People Around Him</div>
+  <h2 class="section-title">Supporting Cast</h2>
+  <div class="cast-grid">
+    <div class="cast-card">
+      <div class="imgwrap"><img src="images/victoria-kitchen.jpg" alt="Victoria"></div>
+      <div class="info">
+        <div class="tag">Wife</div>
+        <h4>Victoria</h4>
+        <p>Henry's wife, a dentist. Grounded and supportive until Henry's transformation frightens her away — and pulls her back once he's exorcised.</p>
+      </div>
+    </div>
+    <div class="cast-card">
+      <div class="imgwrap"><img src="images/victoria-mirror.jpg" alt="Miranda"></div>
+      <div class="info">
+        <div class="tag">Affair · Conscience</div>
+        <h4>Miranda</h4>
+        <p>A hairstylist and singer-songwriter; Henry's affair, his moral conscience, and ultimately his savior.</p>
+      </div>
+    </div>
+    <div class="cast-card">
+      <div class="imgwrap"><img src="images/stanley-frankel.jpg" alt="Stanley Frankel"></div>
+      <div class="info">
+        <div class="tag">Producer</div>
+        <h4>Stanley Frankel</h4>
+        <p>Grand Symphony producer who "discovers" Henry, then coldly discards him for someone newer.</p>
+      </div>
+    </div>
+    <div class="cast-card">
+      <div class="imgwrap"><img src="images/henry-backstage.jpg" alt="William Chester"></div>
+      <div class="info">
+        <div class="tag">The Rival Prodigy</div>
+        <h4>William Chester</h4>
+        <p>The younger, flashier prodigy who replaces Henry — and nearly pays for it with his life.</p>
+      </div>
+    </div>
+    <div class="cast-card">
+      <div class="imgwrap"><img src="images/chester-tuner.jpg" alt="The Piano Tuner"></div>
+      <div class="info">
+        <div class="tag">The Piano Tuner</div>
+        <h4>&nbsp;</h4>
+        <p>The elderly piano tuner who first senses the instrument is haunted.</p>
+      </div>
+    </div>
+    <div class="cast-card">
+      <div class="imgwrap"><img src="images/aunt-margaret.jpg" alt="Aunt Margaret"></div>
+      <div class="info">
+        <div class="tag">The Donor</div>
+        <h4>Aunt Margaret</h4>
+        <p>Henry's aunt; gifts him the piano and helps him trace its deadly history.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="themes" class="themes">
+  <div class="wrap">
+    <div class="eyebrow">What It's Really About</div>
+    <h2 class="section-title">Themes</h2>
+    <div class="theme-list">
+      <div class="theme-item">
+        <div class="num">01</div>
+        <div>
+          <h4>The Price of Ambition</h4>
+          <p>Talent that isn't earned always costs something.</p>
+        </div>
+      </div>
+      <div class="theme-item">
+        <div class="num">02</div>
+        <div>
+          <h4>Imposter Syndrome, Externalized</h4>
+          <p>Henry's insecurity literally possesses him.</p>
+        </div>
+      </div>
+      <div class="theme-item">
+        <div class="num">03</div>
+        <div>
+          <h4>The Musician's Curse</h4>
+          <p>Obsession and mental strain run through every generation of players.</p>
+        </div>
+      </div>
+      <div class="theme-item">
+        <div class="num">04</div>
+        <div>
+          <h4>Cyclical Abuse</h4>
+          <p>Henry repeats Theo's exact crimes without realizing it.</p>
+        </div>
+      </div>
+      <div class="theme-item">
+        <div class="num">05</div>
+        <div>
+          <h4>Self-Acceptance Over Greatness</h4>
+          <p>The ending rejects the "genius" fantasy entirely.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stills-strip">
+  <div class="cell"><img src="images/ghost-hand-keys.jpg" alt="Still"></div>
+  <div class="cell"><img src="images/blood-strings.jpg" alt="Still"></div>
+  <div class="cell"><img src="images/theo-gun-piano.jpg" alt="Still"></div>
+  <div class="cell"><img src="images/henry-possessed-piano.jpg" alt="Still"></div>
+  <div class="cell"><img src="images/studio-room.jpg" alt="Still"></div>
+  <div class="cell"><img src="images/dark-room-piano.jpg" alt="Still"></div>
+</section>
+
+<section class="wrap">
+  <div class="eyebrow">Producible · Marketable · Ready</div>
+  <h2 class="section-title">Ready to Make</h2>
+  <div class="ready-grid">
+    <div class="ready-card">
+      <h4>Small Principal Cast</h4>
+      <p>Under a dozen speaking roles carry the entire story.</p>
+    </div>
+    <div class="ready-card">
+      <h4>Contained Locations</h4>
+      <p>A home, a pub, a studio, and one concert venue.</p>
+    </div>
+    <div class="ready-card">
+      <h4>One Practical Anchor</h4>
+      <p>The piano itself carries the horror — no heavy VFX budget required.</p>
+    </div>
+    <div class="ready-card">
+      <h4>Festival-Ready Hook</h4>
+      <p>Elevated horror with awards-conscious character work — A24 / Blumhouse-adjacent.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Theo's Piano</h2>
+  <p class="tag">Thank you for reading.</p>
+  <div class="contact-details">
+    <a href="mailto:contact@scaryromantic.com">contact@scaryromantic.com</a>
+    <a href="tel:9857051628">985-705-1628</a>
+    <a href="https://www.scaryromantic.com" target="_blank" rel="noopener">www.scaryromantic.com</a>
+    <div class="writer">Written by Tyler Forrest</div>
+  </div>
+</section>
+
+<footer>
+  &copy; Tyler Forrest — Theo's Piano. All rights reserved.
+</footer>
+
+</body>
+</html>
