@@ -145,7 +145,7 @@
   /* sections that use a full-bleed .bg photo layer + .inner wrapper handle their
      own horizontal spacing via .inner, so the outer section padding is zeroed
      here to avoid double gutters */
-  #hook, #synopsis, #characters, #world, #tone, #why, #franchise, #contact{
+  #logline, #hook, #synopsis, #characters, #world, #tone, #why, #franchise, #contact{
     padding-left:0;
     padding-right:0;
   }
@@ -260,12 +260,14 @@
   }
   /* ---------- LOGLINE ---------- */
   #logline{
+    max-width:none;
     background:
       linear-gradient(180deg, var(--bg) 0%, rgba(8,7,10,.55) 20%, rgba(8,7,10,.75) 40%, rgba(8,7,10,.86) 60%, rgba(8,7,10,.75) 80%, var(--bg) 100%),
       url('img/family-hike.jpg') center 30%/cover fixed;
     padding-top:min(20vh,200px);
     padding-bottom:min(20vh,200px);
   }
+  #logline .inner{max-width:1400px;margin:0 auto;padding:0 8vw;}
   .logline-text{
     font-family:'EB Garamond',serif;
     font-style:italic;
@@ -371,11 +373,13 @@
   #synopsis .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
   .synopsis-wrap{
     display:grid;
-    grid-template-columns:.9fr 1.5fr;
+    grid-template-columns:minmax(0,.9fr) minmax(0,1.5fr);
     gap:min(7vw,80px);
   }
-  @media (max-width:900px){ .synopsis-wrap{grid-template-columns:1fr;} .synopsis-sticky{position:static;} }
-  .synopsis-sticky{position:sticky;top:120px;align-self:start;}
+  @media (max-width:900px){ .synopsis-wrap{grid-template-columns:1fr;} }
+  .synopsis-sticky{position:sticky;top:120px;align-self:start;min-width:0;}
+  .synopsis-body{min-width:0;}
+  @media (max-width:900px){ .synopsis-sticky{position:static;} }
   .synopsis-body p{
     color:#cfc6b6;
     margin:0 0 1.5em;
@@ -737,11 +741,13 @@
 
 <!-- LOGLINE -->
 <section id="logline">
+  <div class="inner">
   <div class="tag tag--mono tag--underline reveal">Logline</div>
   <p class="logline-text reveal">When a grieving family&rsquo;s hike to scatter their father&rsquo;s ashes goes wrong, they stumble into the hunting grounds of a forgotten cannibal tribe that has lived undetected in America&rsquo;s last unregulated wilderness for centuries.</p>
   <p class="logline-text reveal" style="margin-top:.6em;">They realize that surviving the woods means becoming as savage as the thing hunting them.</p>
   <div class="logline-sub reveal">A DOMESTIC DRAMA THAT CURDLES INTO VISCERAL SURVIVAL HORROR</div>
   <div class="fictional-note reveal">A wholly fictional people. No real-world tribe, culture, or mythology is depicted.</div>
+  </div>
 </section>
 
 <div class="section-divider"></div>
