@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>They Live Among the Trees: A Feature Film Pitch</title>
+<meta name="description" content="THEY LIVE AMONG THE TREES: A folk-horror / survival thriller feature film. Written by Tyler Forrest.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08070a;
+    --bg2:#0c0b0e;
+    --charcoal:#141215;
+    --line:#2a2620;
+    --bone:#dfd6c4;
+    --bone-dim:#a89f8f;
+    --rust:#a8431f;
+    --rust-bright:#c2551f;
+    --ember:#e8894a;
+    --sage:#5c6a4d;
+    --shadow-deep: 0 30px 80px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--bone);
+    font-family:'EB Garamond', Georgia, serif;
+    font-size:19px;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:900;
+    font-style:normal;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .mono{
+    font-family:'Courier Prime', monospace;
+  }
+  a{color:inherit;}
+  img{display:block;max-width:100%;}
+
+  /* ---------- atmosphere layers ---------- */
+  #grain{
+    position:fixed;inset:0;pointer-events:none;z-index:999;
+    opacity:.06;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grainShift 8s steps(8) infinite;
+  }
+  @keyframes grainShift{
+    0%{transform:translate(0,0)}
+    10%{transform:translate(-2%,-3%)}
+    20%{transform:translate(-4%,2%)}
+    30%{transform:translate(2%,-4%)}
+    40%{transform:translate(-2%,4%)}
+    50%{transform:translate(-4%,1%)}
+    60%{transform:translate(4%,0)}
+    70%{transform:translate(0,3%)}
+    80%{transform:translate(-3%,0)}
+    90%{transform:translate(2%,2%)}
+    100%{transform:translate(0,0)}
+  }
+  #vignette{
+    position:fixed;inset:0;pointer-events:none;z-index:998;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,0) 35%, rgba(0,0,0,.55) 100%);
+  }
+  .scratches{
+    position:absolute;inset:0;pointer-events:none;z-index:2;
+    opacity:.12;
+    background:
+      repeating-linear-gradient(90deg, transparent 0 120px, rgba(255,255,255,.5) 120px 121px, transparent 122px 260px),
+      repeating-linear-gradient(90deg, transparent 0 400px, rgba(255,255,255,.3) 400px 401px, transparent 402px 700px);
+    mix-blend-mode:overlay;
+    animation:flick 3.5s infinite steps(2);
+  }
+  @keyframes flick{
+    0%,90%{opacity:.08;}
+    92%{opacity:.22;}
+    94%{opacity:.05;}
+    100%{opacity:.1;}
+  }
+
+  /* ---------- nav dots ---------- */
+  #navdots{
+    position:fixed;
+    right:22px;top:50%;
+    transform:translateY(-50%);
+    z-index:900;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  #navdots a{
+    width:9px;height:9px;border-radius:50%;
+    background:rgba(223,214,196,.18);
+    border:1px solid rgba(223,214,196,.3);
+    display:block;
+    position:relative;
+    transition:background .3s, transform .3s;
+  }
+  #navdots a.active{
+    background:var(--rust-bright);
+    border-color:var(--rust-bright);
+    transform:scale(1.3);
+    box-shadow:0 0 10px rgba(194,85,31,.7);
+  }
+  #navdots a span{
+    position:absolute;right:20px;top:50%;transform:translateY(-50%);
+    white-space:nowrap;
+    font-family:'Courier Prime',monospace;
+    font-size:11px;letter-spacing:.12em;
+    color:var(--bone-dim);
+    opacity:0;
+    transition:opacity .25s;
+    text-transform:uppercase;
+    pointer-events:none;
+  }
+  #navdots a:hover span{opacity:1;}
+  @media (max-width:800px){ #navdots{display:none;} }
+
+  /* ---------- top corner tags ---------- */
+  .corner-tag{
+    position:fixed;z-index:900;
+    font-family:'Courier Prime',monospace;
+    font-size:11px;letter-spacing:.15em;
+    color:var(--bone-dim);
+    text-transform:uppercase;
+    mix-blend-mode:screen;
+  }
+  .corner-tag.tl{top:24px;left:24px;}
+  .corner-tag.tr{top:24px;right:24px;text-align:right;}
+  @media (max-width:640px){ .corner-tag{font-size:9px;} .corner-tag.tl{left:14px;top:14px;} .corner-tag.tr{right:14px;top:14px;} }
+
+  /* ---------- shared section styles ---------- */
+  section{
+    position:relative;
+    padding:min(14vh,140px) 8vw;
+    max-width:1400px;
+    margin:0 auto;
+  }
+  /* sections that use a full-bleed .bg photo layer + .inner wrapper handle their
+     own horizontal spacing via .inner, so the outer section padding is zeroed
+     here to avoid double gutters */
+  #hook, #synopsis, #characters, #world, #tone, #why, #franchise, #contact{
+    padding-left:0;
+    padding-right:0;
+  }
+  /* ---------- section labels ---------- */
+  /* one consistent treatment used everywhere: tracked mono caps, rust underline */
+  .tag{
+    margin:0 0 24px;
+    display:inline-block;
+  }
+  .tag--mono{
+    font-family:'Courier Prime',monospace;
+    font-size:12.5px;
+    letter-spacing:.4em;
+    text-transform:uppercase;
+    color:var(--rust-bright);
+  }
+  .tag--underline{
+    border-bottom:1px solid rgba(194,85,31,.5);
+    padding-bottom:13px;
+  }
+  .tag--center{
+    display:block;
+    text-align:center;
+  }
+  .tag--small{
+    font-size:10.5px;
+    letter-spacing:.3em;
+    padding-bottom:9px;
+  }
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  .section-divider{
+    height:1px;
+    max-width:1400px;
+    margin:0 auto;
+    background:linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+  }
+
+  /* ---------- HERO ---------- */
+  #hero{
+    height:100svh;
+    min-height:640px;
+    padding:0;
+    max-width:none;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+  }
+  #hero .bg{
+    position:absolute;inset:0;
+    background-image:linear-gradient(180deg, rgba(6,5,7,.35) 0%, rgba(6,5,7,.55) 55%, rgba(6,5,7,.97) 100%), url('img/hero-axe.jpg');
+    background-size:cover;
+    background-position:center 30%;
+    filter:saturate(.82) contrast(1.08) brightness(.85);
+    transform:scale(1.08);
+    will-change:transform;
+  }
+  #hero .content{
+    position:relative;z-index:3;
+    padding:0 8vw 9vh;
+    width:100%;
+  }
+  .kicker{
+    font-family:'Courier Prime',monospace;
+    letter-spacing:.35em;
+    font-size:12px;
+    color:var(--bone-dim);
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .kicker b{color:var(--rust-bright);}
+  h1.title{
+    font-size:clamp(3rem, 9.5vw, 8.2rem);
+    line-height:.92;
+    color:var(--bone);
+    text-shadow:0 4px 40px rgba(0,0,0,.8), 0 0 60px rgba(194,85,31,.08);
+    animation:titleFlicker 7s infinite;
+  }
+  @keyframes titleFlicker{
+    0%,93%,100%{opacity:1;}
+    94%{opacity:.85;}
+    95%{opacity:1;}
+    96%{opacity:.7;}
+    97%{opacity:1;}
+  }
+  .subtitle-row{
+    display:flex;flex-wrap:wrap;
+    gap:10px 26px;
+    margin-top:26px;
+    align-items:center;
+  }
+  .pill{
+    font-family:'Courier Prime',monospace;
+    font-size:12px;letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--bone-dim);
+    border:1px solid var(--line);
+    padding:7px 14px;
+    border-radius:2px;
+  }
+  .byline{
+    margin-top:34px;
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    color:var(--bone-dim);
+    font-size:1.05rem;
+  }
+  /* ---------- LOGLINE ---------- */
+  #logline{
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(8,7,10,.86) 60%, var(--bg) 100%),
+      url('img/family-hike.jpg') center 30%/cover fixed;
+    padding-top:min(20vh,200px);
+    padding-bottom:min(20vh,200px);
+  }
+  .logline-text{
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.5rem, 3.4vw, 2.6rem);
+    line-height:1.42;
+    max-width:960px;
+    color:#f1e9da;
+    text-shadow:0 6px 30px rgba(0,0,0,.85);
+  }
+  .logline-sub{
+    margin-top:34px;
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:700;
+    font-style:italic;
+    letter-spacing:.01em;
+    font-size:clamp(1.1rem,2vw,1.5rem);
+    color:var(--rust-bright);
+  }
+  .fictional-note{
+    margin-top:26px;
+    font-family:'Courier Prime',monospace;
+    font-size:12.5px;
+    letter-spacing:.03em;
+    color:var(--bone-dim);
+    max-width:640px;
+    border-left:2px solid var(--line);
+    padding-left:16px;
+  }
+
+  /* ---------- HOOK (split) ---------- */
+  #hook{position:relative;max-width:none;padding-top:min(16vh,160px);padding-bottom:min(16vh,160px);}
+  #hook .bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(6,6,8,.84) 14%, rgba(6,6,8,.84) 86%, var(--bg) 100%),
+      url('img/canopy-dark.jpg') center 40%/cover fixed;
+    filter:saturate(.8) brightness(.5) contrast(1.1);
+  }
+  #hook .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:min(8vw,90px);
+    align-items:center;
+  }
+  .split.reverse{direction:rtl;}
+  .split.reverse > *{direction:ltr;}
+  @media (max-width:860px){
+    .split{grid-template-columns:1fr;gap:38px;}
+  }
+  .frame{
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow-deep);
+  }
+  .frame img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(.35) contrast(1.12) saturate(.85) brightness(.92);
+    transform:scale(1.01);
+    transition:filter 1.4s ease, transform 4s ease;
+  }
+  .frame:hover img{filter:grayscale(0) contrast(1.1) saturate(1.05) brightness(1);transform:scale(1.06);}
+  .frame::after{
+    content:"";
+    position:absolute;inset:0;
+    box-shadow:inset 0 0 60px rgba(0,0,0,.7);
+    pointer-events:none;
+  }
+  .frame .cap{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:10px 14px;
+    font-family:'Courier Prime',monospace;
+    font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--bone-dim);
+    background:linear-gradient(0deg, rgba(0,0,0,.75), transparent);
+  }
+  h2.section-title{
+    font-size:clamp(2.2rem, 4.6vw, 3.6rem);
+    color:var(--bone);
+    margin-bottom:22px;
+  }
+  .lede{
+    font-size:1.18rem;
+    color:#cfc6b6;
+  }
+  .lede strong{color:var(--rust-bright);font-weight:600;}
+
+  /* ---------- SYNOPSIS ---------- */
+  #synopsis{
+    position:relative;max-width:none;
+    background:var(--bg2);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  #synopsis .bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(12,11,14,.94) 0%, rgba(12,11,14,.9) 45%, rgba(12,11,14,.97) 100%),
+      url('img/tent-night.jpg') center 35%/cover fixed;
+    filter:saturate(.75) brightness(.5);
+  }
+  #synopsis .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
+  .synopsis-wrap{
+    display:grid;
+    grid-template-columns:.9fr 1.5fr;
+    gap:min(7vw,80px);
+  }
+  @media (max-width:900px){ .synopsis-wrap{grid-template-columns:1fr;} }
+  .synopsis-sticky{position:sticky;top:120px;align-self:start;}
+  .synopsis-body p{
+    color:#cfc6b6;
+    margin:0 0 1.5em;
+    font-size:1.08rem;
+  }
+  .synopsis-body p:first-of-type::first-letter{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:900;
+    font-size:3.4em;
+    float:left;
+    line-height:.8;
+    padding:.06em .09em 0 0;
+    color:var(--rust-bright);
+  }
+
+  /* ---------- CHARACTERS ---------- */
+  #characters{position:relative;max-width:none;background:var(--bg);}
+  #characters .bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(8,7,10,.92) 20%, rgba(8,7,10,.95) 100%),
+      url('img/family-hike.jpg') center 65%/cover fixed;
+    filter:saturate(.7) brightness(.42) contrast(1.1);
+    transform:scaleX(-1);
+  }
+  #characters .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
+  .char-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media (max-width:900px){ .char-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .char-grid{grid-template-columns:1fr;} }
+  .char-card{
+    background:rgba(20,18,21,.82);
+    backdrop-filter:blur(2px);
+    position:relative;
+    min-height:260px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    overflow:hidden;
+  }
+  .char-card.photo{min-height:380px;}
+  .char-card.photo img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:grayscale(.55) contrast(1.15) brightness(.62) saturate(.9);
+    transition:filter .7s ease, transform 3s ease;
+    z-index:0;
+  }
+  .char-card.photo:hover img{filter:grayscale(0) contrast(1.1) brightness(.8) saturate(1.05);transform:scale(1.05);}
+  .char-card.photo::before{
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg, rgba(10,9,11,0) 30%, rgba(10,9,11,.96) 100%);
+  }
+  .char-inner{position:relative;z-index:2;padding:22px 22px 24px;}
+  .char-name{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:800;
+    font-size:1.7rem;
+    letter-spacing:.05em;
+    color:var(--bone);
+  }
+  .char-role{
+    font-family:'Courier Prime',monospace;
+    font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--rust-bright);
+    margin:6px 0 10px;
+  }
+  .char-desc{
+    font-size:.92rem;
+    color:var(--bone-dim);
+    line-height:1.5;
+  }
+  .char-card:not(.photo){
+    padding:26px 22px;
+    border-top:1px dashed rgba(223,214,196,.08);
+  }
+  .char-card:not(.photo) .char-inner{padding:0;}
+
+  /* ---------- WORLD ---------- */
+  #world{
+    position:relative;
+    padding-top:min(18vh,190px);
+    padding-bottom:min(18vh,190px);
+    max-width:none;
+  }
+  #world .bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(6,6,8,.72) 18%, rgba(6,6,8,.86) 82%, var(--bg) 100%),
+      url('img/ritual.jpg') center 30%/cover fixed;
+    filter:saturate(.9) contrast(1.05);
+  }
+  #world .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
+  .pillars{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:rgba(223,214,196,.14);
+    margin-top:46px;
+    border:1px solid rgba(223,214,196,.14);
+  }
+  @media (max-width:820px){ .pillars{grid-template-columns:repeat(2,1fr);} }
+  .pillar{
+    background:rgba(8,7,10,.72);
+    backdrop-filter:blur(2px);
+    padding:28px 22px;
+  }
+  .pillar .num{
+    font-family:'Courier Prime',monospace;
+    font-size:11px;color:var(--rust-bright);letter-spacing:.15em;
+  }
+  .pillar h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:700;
+    font-size:1.4rem;
+    margin:10px 0 8px;
+    color:var(--bone);
+  }
+  .pillar p{font-size:.92rem;color:var(--bone-dim);margin:0;}
+  .callout{
+    margin-top:46px;
+    padding:26px 28px;
+    border-left:2px solid var(--rust-bright);
+    background:rgba(20,18,21,.55);
+    font-size:1.02rem;
+    color:#cfc6b6;
+    max-width:900px;
+  }
+  .callout b{color:var(--bone);}
+
+  /* ---------- TONE ---------- */
+  #tone{position:relative;max-width:none;background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  #tone .bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(12,11,14,.94) 0%, rgba(12,11,14,.9) 45%, rgba(12,11,14,.97) 100%),
+      url('img/char-jessica.jpg') center 25%/cover fixed;
+    filter:saturate(.55) brightness(.4) contrast(1.05);
+  }
+  #tone .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
+  .moodline-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+    margin:40px 0 60px;
+  }
+  @media (max-width:820px){ .moodline-grid{grid-template-columns:repeat(2,1fr);} }
+  .moodline{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    font-style:italic;
+    font-size:1.25rem;
+    line-height:1.15;
+    color:var(--bone);
+    padding-top:16px;
+    border-top:1px solid var(--line);
+  }
+  .refs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 60px;
+  }
+  @media (max-width:820px){ .refs{grid-template-columns:1fr;} }
+  .ref-row{
+    padding:20px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .ref-title{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:700;
+    font-size:1.05rem;
+    letter-spacing:.03em;
+    color:var(--bone);
+    margin-bottom:6px;
+  }
+  .ref-desc{
+    font-size:.92rem;
+    color:var(--bone-dim);
+    max-width:46ch;
+  }
+
+  /* ---------- WHY ---------- */
+  #why{position:relative;max-width:none;}
+  #why .bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(8,7,10,.93) 30%, rgba(8,7,10,.96) 100%),
+      url('img/char-leroy.jpg') center 20%/cover fixed;
+    filter:saturate(.55) brightness(.38) contrast(1.05);
+  }
+  #why .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:26px;
+    margin:44px 0 60px;
+  }
+  @media (max-width:900px){ .why-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .why-grid{grid-template-columns:1fr;} }
+  .why-card{
+    border:1px solid var(--line);
+    padding:26px 22px;
+    background:linear-gradient(180deg, rgba(255,255,255,.015), transparent);
+  }
+  .why-card .num{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:900;
+    font-size:2.4rem;
+    color:var(--rust-bright);
+    opacity:.85;
+  }
+  .why-card h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:700;
+    font-size:1.3rem;
+    margin:8px 0 10px;
+    color:var(--bone);
+  }
+  .why-card p{font-size:.92rem;color:var(--bone-dim);margin:0;}
+  .bottom-line{
+    text-align:center;
+    padding:46px 6vw;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .bottom-line .bl-head{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:700;
+    font-size:clamp(1.3rem,2.6vw,1.9rem);
+    letter-spacing:.05em;
+    color:var(--bone);
+  }
+  .bottom-line p{
+    max-width:760px;margin:16px auto 0;
+    font-family:'EB Garamond',serif;
+    font-style:italic;
+    color:var(--bone-dim);
+    font-size:1.1rem;
+  }
+
+  /* ---------- FRANCHISE ---------- */
+  #franchise{
+    position:relative;max-width:none;padding-top:min(18vh,190px);padding-bottom:min(18vh,190px);
+  }
+  #franchise .bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(6,6,8,.55) 25%, rgba(6,6,8,.86) 100%),
+      url('img/hero-axe.jpg') center 22%/cover fixed;
+    filter:saturate(.7) contrast(1.05) brightness(.7);
+  }
+  #franchise .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
+  .options{
+    display:grid;grid-template-columns:1fr 1fr;gap:30px;
+    margin-top:44px;
+  }
+  @media (max-width:820px){ .options{grid-template-columns:1fr;} }
+  .option{
+    border:1px solid rgba(223,214,196,.2);
+    padding:30px 26px;
+    background:rgba(8,7,10,.55);
+  }
+  .option .option-tag{
+    font-family:'Courier Prime',monospace;
+    font-size:11px;letter-spacing:.18em;
+    color:var(--rust-bright);
+    text-transform:uppercase;
+  }
+  .option h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:700;
+    font-size:1.7rem;
+    margin:12px 0 12px;
+    color:var(--bone);
+  }
+  .option p{color:var(--bone-dim);margin:0;font-size:.98rem;}
+
+  /* ---------- CONTACT ---------- */
+  #contact{
+    position:relative;max-width:none;
+    text-align:center;
+    padding-top:min(18vh,190px);
+    padding-bottom:min(12vh,120px);
+  }
+  #contact .bg{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, var(--bg) 0%, rgba(7,6,8,.93) 30%, rgba(7,6,8,.98) 100%),
+      url('img/char-aiyana.jpg') center 18%/cover fixed;
+    filter:grayscale(1) brightness(.35) contrast(1.1);
+  }
+  #contact .inner{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 8vw;}
+  .contact-title{
+    font-size:clamp(2rem,5vw,3.6rem);
+    color:var(--bone);
+  }
+  .contact-card{
+    margin:44px auto 0;
+    max-width:560px;
+    border:1px solid var(--line);
+    padding:40px 36px;
+    background:linear-gradient(180deg, rgba(255,255,255,.015), transparent);
+  }
+  .contact-row{
+    display:flex;justify-content:space-between;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-family:'Courier Prime',monospace;
+    font-size:13px;letter-spacing:.05em;
+  }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .k{color:var(--bone-dim);text-transform:uppercase;letter-spacing:.16em;font-size:11px;}
+  .contact-row .v{color:var(--bone);}
+  .contact-row a{text-decoration:none;border-bottom:1px solid var(--rust-bright);}
+  .final-note{
+    margin:38px auto 0;
+    max-width:600px;
+    font-family:'EB Garamond',serif;font-style:italic;
+    color:var(--bone-dim);
+    font-size:1rem;
+  }
+  footer{
+    text-align:center;
+    padding:40px 6vw 60px;
+    font-family:'Courier Prime',monospace;
+    font-size:11px;letter-spacing:.12em;
+    color:#5c564c;
+    text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+
+<div id="grain"></div>
+<div id="vignette"></div>
+
+<div class="corner-tag tl">They Live Among the Trees</div>
+<div class="corner-tag tr">Feature Film Pitch</div>
+
+<nav id="navdots">
+  <a href="#hero" data-name="Title"><span>Title</span></a>
+  <a href="#logline" data-name="Logline"><span>Logline</span></a>
+  <a href="#hook" data-name="The Hook"><span>The Hook</span></a>
+  <a href="#synopsis" data-name="Synopsis"><span>Synopsis</span></a>
+  <a href="#characters" data-name="Characters"><span>Characters</span></a>
+  <a href="#world" data-name="World"><span>World</span></a>
+  <a href="#tone" data-name="Tone"><span>Tone &amp; Style</span></a>
+  <a href="#why" data-name="Why Now"><span>Why Now</span></a>
+  <a href="#franchise" data-name="Franchise"><span>Franchise</span></a>
+  <a href="#contact" data-name="Contact"><span>Contact</span></a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="bg" id="heroBg"></div>
+  <div class="scratches"></div>
+  <div class="content">
+    <div class="kicker">A Folk-Horror <b>/</b> Survival Thriller</div>
+    <h1 class="title">THEY LIVE<br>AMONG THE TREES</h1>
+    <div class="subtitle-row">
+      <span class="pill">Feature Film</span>
+      <span class="pill">R-Rated</span>
+      <span class="pill">Survival Horror</span>
+    </div>
+    <div class="byline">Written by Tyler Forrest</div>
+  </div>
+</section>
+
+<!-- LOGLINE -->
+<section id="logline">
+  <div class="tag tag--mono tag--underline reveal">Logline</div>
+  <p class="logline-text reveal">When a grieving family&rsquo;s hike to scatter their father&rsquo;s ashes goes wrong, they stumble into the hunting grounds of a forgotten cannibal tribe that has lived undetected in America&rsquo;s last unregulated wilderness for centuries.</p>
+  <p class="logline-text reveal" style="margin-top:.6em;">They realize that surviving the woods means becoming as savage as the thing hunting them.</p>
+  <div class="logline-sub reveal">A DOMESTIC DRAMA THAT CURDLES INTO VISCERAL SURVIVAL HORROR</div>
+  <div class="fictional-note reveal">A wholly fictional people. No real-world tribe, culture, or mythology is depicted.</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- THE HOOK -->
+<section id="hook">
+  <div class="bg"></div>
+  <div class="inner">
+  <div class="split">
+    <div class="frame reveal">
+      <img src="img/hook-camera.jpg" alt="A vintage large-format camera on a tripod, draped with a dark cloth, in a misty forest at dusk.">
+      <div class="cap">1946 · Cold Open</div>
+    </div>
+    <div class="reveal">
+      <div class="tag tag--mono tag--underline">The Hook</div>
+      <h2 class="section-title">THE LEGEND<br>IS FACT.</h2>
+      <p class="lede">A <strong>1946 cold open</strong>, a photographer stalked and speared for daring to photograph &ldquo;the Tree People,&rdquo; establishes the legend as fact before the story ever touches the present day.</p>
+      <p class="lede">From there, the film plays as a domestic drama that curdles into visceral survival horror: a dysfunctional family bickering its way through a hike becomes a fight for survival against a forgotten tribe pushed by a dying world into ritual cannibalism.</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- SYNOPSIS -->
+<section id="synopsis">
+  <div class="bg"></div>
+  <div class="inner">
+  <div class="synopsis-wrap">
+    <div class="synopsis-sticky reveal">
+      <div class="tag tag--mono tag--underline">Synopsis</div>
+      <h2 class="section-title">A FAMILY<br>FALLS APART.<br>THE WOODS<br>FINISH THE JOB.</h2>
+    </div>
+    <div class="synopsis-body reveal">
+      <p>Daniel, his girlfriend Jessica (main POV), his sister Rachel, her husband Chris, and their mother Marie set out to scatter their late father&rsquo;s ashes at Angel&rsquo;s Peak, deep in an unregulated wilderness rumored to be home to &ldquo;the Tree People,&rdquo; an urban legend the local rangers dismiss as folklore. The hike exposes every fracture in the family: Marie&rsquo;s coldness, Rachel&rsquo;s resentment, Daniel&rsquo;s infidelity. It all comes spilling out before they even reach the trail&rsquo;s end.</p>
+      <p>When they get lost off-trail, Rachel storms off alone after a fight with her mother and vanishes. The search splinters the family apart, and one by one they discover the legend is real: a tribe of camouflaged, spear-wielding people who live in the canopy, speak their own language, and survive by hunting anyone who wanders too deep. Daniel is captured and taken to their village, where a ritual of dark hospitality gives way to horrifying violence.</p>
+      <p>Marie and Jessica, fleeing through the night, are pulled into an alliance with Leroy, a traumatized ex-Navy SEAL living off-grid for years, who knows how to fight the tribe on their own terms. The brutal rescue mission into the heart of the village leads Jessica to Aiyana, the chief&rsquo;s daughter. She learns the tribe&rsquo;s story isn&rsquo;t pure savagery, but a people driven to cannibalism by generations of isolation and ecological collapse.</p>
+      <p>Jessica escapes, but nearly everyone she came with is dead, and the only ally who kept her alive dies getting her out. She returns to civilization changed: someone who understands exactly why the tribe does what it does, and how she would be willing to do the same to survive. It ends on a horror-movie sting: Aiyana tracks her down in the city, forcing a confrontation that leaves Jessica standing over a body in her own apartment. It closes with Jessica walking back into the wilderness alone, ax in hand, sealing the trailhead as a scream rises from deep in the trees.</p>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- CHARACTERS -->
+<section id="characters">
+  <div class="bg"></div>
+  <div class="inner">
+  <div class="tag tag--mono tag--underline tag--center reveal">Dramatis Personae</div>
+  <h2 class="section-title reveal" style="margin-bottom:40px;text-align:center;">THE PEOPLE<br>WHO GO IN</h2>
+  <div class="char-grid reveal">
+    <div class="char-card photo">
+      <img src="img/char-jessica.jpg" alt="Jessica, blood and dirt streaked across her face, holding a spear point, staring into the distance at dusk.">
+      <div class="char-inner">
+        <div class="char-name">Jessica</div>
+        <div class="char-role">The Final Girl</div>
+        <div class="char-desc">Becomes more dangerous than anyone who hunted her.</div>
+      </div>
+    </div>
+    <div class="char-card photo">
+      <img src="img/char-leroy.jpg" alt="Leroy, a grey-bearded ex-Navy SEAL, holding a rifle, standing in smoke and firelight.">
+      <div class="char-inner">
+        <div class="char-name">Leroy</div>
+        <div class="char-role">Ex-Navy SEAL, Hermit</div>
+        <div class="char-desc">The conscience who insists the tribe isn&rsquo;t the villain.</div>
+      </div>
+    </div>
+    <div class="char-card photo">
+      <img src="img/char-aiyana.jpg" alt="Aiyana, the chief's daughter, in stark black and white, one eye lit, war paint across her brow.">
+      <div class="char-inner">
+        <div class="char-name">Aiyana</div>
+        <div class="char-role">The Chief&rsquo;s Daughter</div>
+        <div class="char-desc">The tribe&rsquo;s beautiful, unreadable heart.</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-inner">
+        <div class="char-name">Daniel</div>
+        <div class="char-role">Jessica&rsquo;s Boyfriend</div>
+        <div class="char-desc">Unfaithful. The son who skipped his father&rsquo;s funeral.</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-inner">
+        <div class="char-name">Marie</div>
+        <div class="char-role">The Mother</div>
+        <div class="char-desc">A mother whose grief curdles into cruelty. To guilt, to sacrifice.</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-inner">
+        <div class="char-name">Rachel</div>
+        <div class="char-role">The Daughter</div>
+        <div class="char-desc">Resentful. Sends the family off the safe trail.</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-inner">
+        <div class="char-name">Chris</div>
+        <div class="char-role">Rachel&rsquo;s Husband</div>
+        <div class="char-desc">Loyal, out of his depth, and lost saving Marie.</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-inner">
+        <div class="char-name">The Sachem</div>
+        <div class="char-role">The Chief</div>
+        <div class="char-desc">The tribe&rsquo;s measured moral center.</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-inner">
+        <div class="char-name">Gene</div>
+        <div class="char-role">The Trailhead Crank</div>
+        <div class="char-desc">Scarred. The ignored warning, telling the truth.</div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- WORLD -->
+<section id="world">
+  <div class="bg"></div>
+  <div class="inner">
+    <div class="tag tag--mono tag--underline reveal">World &amp; Mythology</div>
+    <h2 class="section-title reveal">NOT MONSTERS.<br>A PEOPLE.</h2>
+    <p class="lede reveal" style="max-width:700px;margin-top:18px;">An invented people with a language, a faith, and a history. The mythology is the engine.</p>
+    <div class="pillars reveal">
+      <div class="pillar">
+        <div class="num">01</div>
+        <h3>A Language</h3>
+        <p>Original, consistent, subtitled.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">02</div>
+        <h3>A Religion</h3>
+        <p>Built around sacrifice and survival.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">03</div>
+        <h3>A Society</h3>
+        <p>Chief, warriors, children.</p>
+      </div>
+      <div class="pillar">
+        <div class="num">04</div>
+        <h3>An Origin</h3>
+        <p>Rooted in ecological collapse.</p>
+      </div>
+    </div>
+    <div class="callout reveal"><b>The Unregulated Wilderness:</b> land legally barred to government and corporation, quietly buried as folklore to protect tourism.</div>
+    <div class="fictional-note reveal" style="margin-top:26px;">A wholly fictional people. No real-world tribe, culture, or mythology is depicted.</div>
+  </div>
+</section>
+
+<!-- TONE -->
+<section id="tone">
+  <div class="bg"></div>
+  <div class="inner">
+  <div class="tag tag--mono tag--underline reveal">Tone &amp; Style</div>
+  <h2 class="section-title reveal">GROUNDED.<br>MUDDY.<br>PRACTICAL.</h2>
+  <div class="moodline-grid reveal">
+    <div class="moodline">Arriving too far, too late.</div>
+    <div class="moodline">The dark that splits a family.</div>
+    <div class="moodline">The old, patient hunger.</div>
+    <div class="moodline">Their grace, their rules.</div>
+  </div>
+  <div class="tag tag--mono tag--underline tag--small reveal">References</div>
+  <div class="refs reveal">
+    <div class="ref-row"><div class="ref-title">The Descent</div><div class="ref-desc">Claustrophobic, all-in survival. The lead goes feral.</div></div>
+    <div class="ref-row"><div class="ref-title">The Ritual / The Village</div><div class="ref-desc">A hidden society in the woods.</div></div>
+    <div class="ref-row"><div class="ref-title">Predator</div><div class="ref-desc">A lone operator on its own turf.</div></div>
+    <div class="ref-row"><div class="ref-title">Apocalypto</div><div class="ref-desc">Tribal violence, sacrifice, a chase-driven back half.</div></div>
+    <div class="ref-row"><div class="ref-title">Green Inferno / Cannibal Holocaust</div><div class="ref-desc">Outsiders stumble into a cannibal tribe. Tonally, never gratuitously.</div></div>
+    <div class="ref-row"><div class="ref-title">Prey (2022)</div><div class="ref-desc">Rehabilitating &ldquo;savage&rdquo; antagonists with specificity.</div></div>
+    <div class="ref-row"><div class="ref-title">Midsommar</div><div class="ref-desc">The uncomfortable intimacy between captive and captor.</div></div>
+    <div class="ref-row"><div class="ref-title">A Note on Restraint</div><div class="ref-desc">Practical dread over gore. A horror that stays with you.</div></div>
+  </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WHY NOW -->
+<section id="why">
+  <div class="bg"></div>
+  <div class="inner">
+  <div class="tag tag--mono tag--underline reveal">Why This, Why Now</div>
+  <h2 class="section-title reveal">THE COMMERCIAL<br>ENGINE</h2>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="num">01</div>
+      <h3>A Proven Slate</h3>
+      <p>Mid-budget, R-rated survival horror keeps landing: Barbarian, Talk to Me, The Ritual, Prey.</p>
+    </div>
+    <div class="why-card">
+      <div class="num">02</div>
+      <h3>Lean &amp; Franchise-Ready</h3>
+      <p>One practically location-contained shoot, with mythology built for sequels from page one.</p>
+    </div>
+    <div class="why-card">
+      <div class="num">03</div>
+      <h3>The Humanized Monster</h3>
+      <p>A real attempt to humanize the &ldquo;villains.&rdquo; The genre&rsquo;s rarest trick.</p>
+    </div>
+    <div class="why-card">
+      <div class="num">04</div>
+      <h3>Built-In Afterbuzz</h3>
+      <p>Pathos for the tribe opens crossover, and a moral debate that outlives the credits.</p>
+    </div>
+  </div>
+  <div class="bottom-line reveal">
+    <div class="bl-head">MID-BUDGET. R-RATED. ONE MUDDY LOCATION. A SEQUEL ALREADY BREATHING.</div>
+    <p>A survival horror that costs like an indie, feels like a blockbuster, and leaves the audience arguing over who the real monster was on the way out.</p>
+  </div>
+  </div>
+</section>
+
+<!-- FRANCHISE -->
+<section id="franchise">
+  <div class="bg"></div>
+  <div class="inner">
+    <div class="tag tag--mono tag--underline reveal">Franchise Potential</div>
+    <h2 class="section-title reveal">BUILT FOR A SEQUEL<br>FROM PAGE ONE</h2>
+    <p class="lede reveal" style="max-width:760px;margin-top:18px;">Aiyana&rsquo;s pursuit of Jessica into the city proves the threat isn&rsquo;t contained to the woods. The final shot seals it: Jessica walking back into the wilderness she just sealed off.</p>
+    <div class="options reveal">
+      <div class="option">
+        <div class="option-tag">Option A</div>
+        <h3>The Direct Sequel</h3>
+        <p>Jessica&rsquo;s transformation into a hunter. The survivor becoming the predator.</p>
+      </div>
+      <div class="option">
+        <div class="option-tag">Option B</div>
+        <h3>The Anthology</h3>
+        <p>A rotating cast of new victims wanders into the same unregulated wilderness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="bg"></div>
+  <div class="inner">
+  <div class="tag tag--mono tag--underline tag--center reveal">For Consideration</div>
+  <h2 class="contact-title reveal">THEY LIVE<br>AMONG THE TREES</h2>
+  <div class="contact-card reveal">
+    <div class="contact-row"><span class="k">Writer</span><span class="v">Tyler Forrest</span></div>
+    <div class="contact-row"><span class="k">Telephone</span><span class="v"><a href="tel:9857051628">985-705-1628</a></span></div>
+    <div class="contact-row"><span class="k">Email</span><span class="v"><a href="mailto:contact@scaryromantic.com">contact@scaryromantic.com</a></span></div>
+    <div class="contact-row"><span class="k">Web</span><span class="v"><a href="https://www.scaryromantic.com" target="_blank" rel="noopener">www.scaryromantic.com</a></span></div>
+  </div>
+  <p class="final-note reveal">An original story about an invented people. Full script and treatment available on request.</p>
+  </div>
+</section>
+
+<footer>They Live Among the Trees &middot; Feature Film Pitch &middot; &copy; Tyler Forrest</footer>
+
+<script>
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); }
+    });
+  }, {threshold:.15, rootMargin:'0px 0px -8% 0px'});
+  revealEls.forEach(el=>io.observe(el));
+
+  // nav dot active state
+  const sections = document.querySelectorAll('section[id]');
+  const dots = document.querySelectorAll('#navdots a');
+  const dotMap = {};
+  dots.forEach(d=> dotMap[d.getAttribute('href').slice(1)] = d);
+
+  const navIo = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      const id = entry.target.id;
+      if(entry.isIntersecting){
+        dots.forEach(d=>d.classList.remove('active'));
+        if(dotMap[id]) dotMap[id].classList.add('active');
+      }
+    });
+  }, {threshold:.5});
+  sections.forEach(s=>navIo.observe(s));
+
+  // hero parallax
+  const heroBg = document.getElementById('heroBg');
+  let ticking = false;
+  window.addEventListener('scroll', ()=>{
+    if(!ticking){
+      requestAnimationFrame(()=>{
+        const y = window.scrollY;
+        if(y < window.innerHeight){
+          heroBg.style.transform = `scale(1.08) translateY(${y*0.18}px)`;
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+</script>
+</body>
+</html>
