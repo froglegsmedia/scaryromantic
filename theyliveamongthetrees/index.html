@@ -453,11 +453,36 @@
     color:var(--bone-dim);
     line-height:1.5;
   }
-  .char-card:not(.photo){
-    padding:26px 22px;
-    border-top:1px dashed rgba(223,214,196,.08);
+  .char-extras{
+    margin-top:3px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    column-gap:56px;
   }
-  .char-card:not(.photo) .char-inner{padding:0;}
+  @media (max-width:700px){ .char-extras{grid-template-columns:1fr;} }
+  .char-extra{
+    padding:13px 0;
+    border-bottom:1px solid rgba(223,214,196,.08);
+    display:flex;flex-wrap:wrap;align-items:baseline;column-gap:11px;
+  }
+  .char-extra-name{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.1rem;letter-spacing:.04em;
+    color:var(--bone);
+  }
+  .char-extra-role{
+    font-family:'Courier Prime',monospace;
+    font-size:9.5px;letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--rust-bright);
+  }
+  .char-extra-desc{
+    flex:1 1 100%;
+    margin:2px 0 0;
+    font-size:.85rem;
+    color:var(--bone-dim);
+    line-height:1.45;
+  }
 
   /* ---------- WORLD ---------- */
   #world{
@@ -821,47 +846,31 @@
         <div class="char-desc">The tribe&rsquo;s beautiful, unreadable heart.</div>
       </div>
     </div>
-    <div class="char-card">
-      <div class="char-inner">
-        <div class="char-name">Daniel</div>
-        <div class="char-role">Jessica&rsquo;s Boyfriend</div>
-        <div class="char-desc">Unfaithful. The son who skipped his father&rsquo;s funeral.</div>
-      </div>
+  </div>
+  <div class="char-extras reveal">
+    <div class="char-extra">
+      <span class="char-extra-name">Daniel</span><span class="char-extra-role">Jessica&rsquo;s Boyfriend</span>
+      <p class="char-extra-desc">Unfaithful. The son who skipped his father&rsquo;s funeral.</p>
     </div>
-    <div class="char-card">
-      <div class="char-inner">
-        <div class="char-name">Marie</div>
-        <div class="char-role">The Mother</div>
-        <div class="char-desc">A mother whose grief curdles into cruelty. To guilt, to sacrifice.</div>
-      </div>
+    <div class="char-extra">
+      <span class="char-extra-name">Marie</span><span class="char-extra-role">The Mother</span>
+      <p class="char-extra-desc">A mother whose grief curdles into cruelty. To guilt, to sacrifice.</p>
     </div>
-    <div class="char-card">
-      <div class="char-inner">
-        <div class="char-name">Rachel</div>
-        <div class="char-role">The Daughter</div>
-        <div class="char-desc">Resentful. Sends the family off the safe trail.</div>
-      </div>
+    <div class="char-extra">
+      <span class="char-extra-name">Rachel</span><span class="char-extra-role">The Daughter</span>
+      <p class="char-extra-desc">Resentful. Sends the family off the safe trail.</p>
     </div>
-    <div class="char-card">
-      <div class="char-inner">
-        <div class="char-name">Chris</div>
-        <div class="char-role">Rachel&rsquo;s Husband</div>
-        <div class="char-desc">Loyal, out of his depth, and lost saving Marie.</div>
-      </div>
+    <div class="char-extra">
+      <span class="char-extra-name">Chris</span><span class="char-extra-role">Rachel&rsquo;s Husband</span>
+      <p class="char-extra-desc">Loyal, out of his depth, and lost saving Marie.</p>
     </div>
-    <div class="char-card">
-      <div class="char-inner">
-        <div class="char-name">The Sachem</div>
-        <div class="char-role">The Chief</div>
-        <div class="char-desc">The tribe&rsquo;s measured moral center.</div>
-      </div>
+    <div class="char-extra">
+      <span class="char-extra-name">The Sachem</span><span class="char-extra-role">The Chief</span>
+      <p class="char-extra-desc">The tribe&rsquo;s measured moral center.</p>
     </div>
-    <div class="char-card">
-      <div class="char-inner">
-        <div class="char-name">Gene</div>
-        <div class="char-role">The Trailhead Crank</div>
-        <div class="char-desc">Scarred. The ignored warning, telling the truth.</div>
-      </div>
+    <div class="char-extra">
+      <span class="char-extra-name">Gene</span><span class="char-extra-role">The Trailhead Crank</span>
+      <p class="char-extra-desc">Scarred. The ignored warning, telling the truth.</p>
     </div>
   </div>
   </div>
