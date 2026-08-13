@@ -367,8 +367,10 @@
     position:absolute;inset:0;
     background:
       linear-gradient(180deg, rgba(12,11,14,.94) 0%, rgba(12,11,14,.91) 22%, rgba(12,11,14,.9) 45%, rgba(12,11,14,.93) 72%, rgba(12,11,14,.97) 100%),
-      url('img/tent-night.jpg') center 35%/cover fixed;
+      url('img/tent-night.jpg') center 35%/cover;
+    background-attachment:scroll,scroll;
     filter:saturate(.75) brightness(.62);
+    will-change:auto;
   }
   #synopsis .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 8vw;}
   .synopsis-wrap{
