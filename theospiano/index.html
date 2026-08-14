@@ -67,7 +67,10 @@
     letter-spacing:0.18em;
     font-size:11px;
     text-transform:uppercase;
-    background:linear-gradient(to bottom, rgba(10,8,6,0.85), transparent);
+    background:rgba(8,6,5,0.92);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
   }
   header.nav .brand{
     font-family:var(--serif);
@@ -84,8 +87,50 @@
   }
   header.nav nav a:hover{color:var(--accent-bright);}
   header.nav nav{display:flex;}
+
+  .nav-toggle{display:none;}
+  .nav-toggle-label{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:26px;
+    height:20px;
+    cursor:pointer;
+    z-index:101;
+  }
+  .nav-toggle-label span{
+    display:block;
+    width:100%;
+    height:2px;
+    background:var(--ink);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2){opacity:0;}
+  .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
   @media (max-width:640px){
-    header.nav nav{display:none;}
+    header.nav nav{
+      display:flex;
+      flex-direction:column;
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      background:rgba(8,6,5,0.97);
+      border-bottom:1px solid var(--line);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    header.nav nav a{
+      margin:0;
+      padding:16px 6vw;
+      border-top:1px solid var(--line);
+    }
+    .nav-toggle-label{display:flex;}
+    .nav-toggle:checked ~ nav{max-height:320px;}
   }
 
   /* ---------- FULL-BLEED SLIDE ---------- */
@@ -617,6 +662,10 @@
 
 <header class="nav">
   <div class="brand">THEO'S PIANO</div>
+  <input type="checkbox" id="nav-toggle" class="nav-toggle">
+  <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </label>
   <nav>
     <a href="#synopsis">Synopsis</a>
     <a href="#world">The World</a>
