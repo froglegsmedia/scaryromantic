@@ -37,7 +37,7 @@
     --shadow-deep: 0 30px 80px rgba(0,0,0,.7);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;overflow-x:hidden;}
+  html{scroll-behavior:smooth;overflow-x:hidden;scroll-padding-top:60px;}
   body{
     margin:0;
     background:var(--bg);
@@ -136,21 +136,51 @@
   #navdots a:hover span{opacity:1;}
   @media (max-width:800px){ #navdots{display:none;} }
 
-  /* ---------- top corner tags ---------- */
-  .corner-tag{
-    position:fixed;z-index:900;
+  /* ---------- top menu ---------- */
+  #topnav{
+    position:fixed;top:0;left:0;right:0;z-index:950;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:24px;
+    padding:0 28px;
+    height:60px;
+    background:rgba(8,7,10,.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(223,214,196,.12);
+  }
+  #topnav .brand{
     font-family:'Courier Prime',monospace;
-    font-size:11px;letter-spacing:.15em;
+    font-size:11px;letter-spacing:.14em;
+    color:var(--bone);
+    text-transform:uppercase;
+    text-decoration:none;
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+  #topnav .links{
+    display:flex;align-items:center;gap:26px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  #topnav .links::-webkit-scrollbar{display:none;}
+  #topnav .links a{
+    font-family:'Courier Prime',monospace;
+    font-size:11px;letter-spacing:.12em;
     color:var(--bone-dim);
     text-transform:uppercase;
-    mix-blend-mode:screen;
+    text-decoration:none;
+    white-space:nowrap;
+    padding:4px 0;
+    border-bottom:1px solid transparent;
+    transition:color .25s, border-color .25s;
   }
-  .corner-tag.tl{top:24px;left:24px;}
-  .corner-tag.tr{top:24px;right:24px;text-align:right;}
+  #topnav .links a:hover{color:var(--bone);}
+  #topnav .links a.active{color:var(--rust-bright);border-bottom-color:var(--rust-bright);}
   @media (max-width:640px){
-    .corner-tag{font-size:9px;position:absolute;}
-    .corner-tag.tl{left:14px;top:14px;}
-    .corner-tag.tr{right:14px;top:14px;}
+    #topnav{height:52px;padding:0 16px;gap:16px;}
+    #topnav .brand{font-size:9.5px;}
+    #topnav .links{gap:20px;}
+    #topnav .links a{font-size:10px;}
   }
 
   /* ---------- shared section styles ---------- */
@@ -482,7 +512,7 @@
   @media (max-width:700px){ .char-extras{grid-template-columns:1fr;} }
   .char-extra{
     padding:13px 0;
-    border-bottom:1px solid rgba(223,214,196,.08);
+    border-bottom:1px solid rgba(223,214,196,.16);
     display:flex;flex-wrap:wrap;align-items:baseline;column-gap:11px;
   }
   .char-extra-name{
@@ -781,8 +811,19 @@
 <div id="grain"></div>
 <div id="vignette"></div>
 
-<div class="corner-tag tl">They Live Among the Trees</div>
-<div class="corner-tag tr">Feature Film</div>
+<nav id="topnav">
+  <a href="#hero" class="brand">They Live Among the Trees</a>
+  <div class="links">
+    <a href="#logline" data-name="Logline">Logline</a>
+    <a href="#synopsis" data-name="Synopsis">Synopsis</a>
+    <a href="#characters" data-name="Characters">Characters</a>
+    <a href="#world" data-name="World">World</a>
+    <a href="#tone" data-name="Tone">Tone</a>
+    <a href="#why" data-name="Why Now">Why Now</a>
+    <a href="#franchise" data-name="Franchise">Franchise</a>
+    <a href="#contact" data-name="Contact">Contact</a>
+  </div>
+</nav>
 
 <nav id="navdots">
   <a href="#hero" data-name="Title"><span>Title</span></a>
@@ -1072,11 +1113,15 @@
   }, {threshold:.15, rootMargin:'0px 0px -8% 0px'});
   revealEls.forEach(el=>io.observe(el));
 
-  // nav dot active state
+  // nav active state (side dots + top menu)
   const sections = document.querySelectorAll('section[id]');
   const dots = document.querySelectorAll('#navdots a');
   const dotMap = {};
   dots.forEach(d=> dotMap[d.getAttribute('href').slice(1)] = d);
+
+  const topLinks = document.querySelectorAll('#topnav .links a');
+  const topLinkMap = {};
+  topLinks.forEach(a=> topLinkMap[a.getAttribute('href').slice(1)] = a);
 
   const navIo = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
@@ -1084,6 +1129,8 @@
       if(entry.isIntersecting){
         dots.forEach(d=>d.classList.remove('active'));
         if(dotMap[id]) dotMap[id].classList.add('active');
+        topLinks.forEach(a=>a.classList.remove('active'));
+        if(topLinkMap[id]) topLinkMap[id].classList.add('active');
       }
     });
   }, {threshold:.5});
