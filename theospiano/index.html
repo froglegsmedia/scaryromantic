@@ -204,19 +204,15 @@
   }
   .logline p em{color:var(--accent-bright); font-style:normal;}
 
-  /* ---------- GLASS TEXT PANEL ---------- */
+  /* ---------- TEXT PANEL (no box) ---------- */
   .glass-panel{
-    background:var(--glass);
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
-    border:1px solid rgba(236,228,214,0.12);
-    padding:36px 40px;
     max-width:640px;
   }
   .glass-panel p{
     color:var(--ink-dim);
-    font-size:16.5px;
+    font-size:17px;
     margin-bottom:16px;
+    text-shadow:0 2px 18px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.9);
   }
   .glass-panel p:last-child{margin-bottom:0;}
   .glass-panel.align-right{margin-left:auto;}
@@ -560,7 +556,7 @@
   </div>
 </section>
 
-<section id="synopsis" class="slide bg-setup">
+<section id="synopsis" class="slide bg-setup darker">
   <div class="wrap">
     <div class="eyebrow">Genius by Possession</div>
     <h2 class="section-title">The Setup</h2>
@@ -570,7 +566,7 @@
   </div>
 </section>
 
-<section class="slide bg-turn">
+<section class="slide bg-turn darker">
   <div class="wrap">
     <div class="eyebrow">The Turn</div>
     <h2 class="section-title">A Gift He Never Earned</h2>
