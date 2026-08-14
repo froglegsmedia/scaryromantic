@@ -572,6 +572,26 @@
   @media (max-width:420px){
     .cast-grid{grid-template-columns:1fr; max-width:360px;}
   }
+
+  /* ---------- MOBILE BACKGROUND REFRAMING ---------- */
+  /* On tall/narrow screens, cover crops hard on the sides rather than
+     top/bottom, so the horizontal focal point matters far more here
+     than on desktop. Re-aim each photo at its actual subject. */
+  @media (max-width:640px){
+    .bg-hero{ background-position:70% 35%; }
+    .bg-logline{ background-position:22% 30%; }
+    .bg-setup{ background-position:58% 45%; }
+    .bg-turn{ background-position:38% 25%; }
+    .bg-descent{ background-position:42% 28%; }
+    .bg-acts{ background-position:35% 15%; }
+    .bg-world{ background-position:65% 30%; }
+    .bg-henry{ background-position:22% 28%; }
+    .bg-theo{ background-position:62% 28%; }
+    .bg-cast{ background-position:48% 45%; }
+    .bg-themes{ background-position:60% 22%; }
+    .bg-ready{ background-position:32% 45%; }
+    .bg-contact{ background-position:65% 32%; }
+  }
 </style>
 </head>
 <body>
