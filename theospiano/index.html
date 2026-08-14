@@ -221,19 +221,15 @@
   .acts{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:1px;
-    background:rgba(236,228,214,0.14);
-    border:1px solid rgba(236,228,214,0.14);
-    max-width:960px;
+    gap:36px 40px;
+    max-width:980px;
   }
   @media (max-width:800px){
-    .acts{grid-template-columns:1fr;}
+    .acts{grid-template-columns:1fr; gap:32px;}
   }
   .act{
-    background:var(--glass);
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
-    padding:32px 26px;
+    border-left:1px solid rgba(236,228,214,0.3);
+    padding-left:20px;
   }
   .act .tag{
     font-family:var(--sans);
@@ -246,24 +242,21 @@
   .act p{
     color:var(--ink-dim);
     font-size:15px;
+    text-shadow:0 2px 14px rgba(0,0,0,0.85);
   }
 
   /* ---------- WORLD / GENRE ---------- */
   .world-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:1px;
-    background:rgba(236,228,214,0.14);
-    border:1px solid rgba(236,228,214,0.14);
+    gap:36px 40px;
   }
   @media (max-width:800px){
-    .world-grid{grid-template-columns:1fr;}
+    .world-grid{grid-template-columns:1fr; gap:32px;}
   }
   .world-grid > div{
-    background:var(--glass);
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
-    padding:30px 28px;
+    border-left:1px solid rgba(236,228,214,0.3);
+    padding-left:20px;
   }
   .world-grid h4{
     font-family:var(--sans);
@@ -276,6 +269,7 @@
   .world-grid p{
     color:var(--ink-dim);
     font-size:16px;
+    text-shadow:0 2px 14px rgba(0,0,0,0.85);
   }
 
   /* ---------- LEADS (individual full-bleed slides) ---------- */
@@ -310,18 +304,13 @@
   .cast-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:1px;
-    background:rgba(236,228,214,0.14);
-    border:1px solid rgba(236,228,214,0.14);
+    gap:34px 32px;
     max-width:980px;
   }
   @media (max-width:800px){
     .cast-grid{grid-template-columns:repeat(2,1fr);}
   }
   .cast-card{
-    background:var(--glass);
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
     position:relative;
     overflow:hidden;
     display:flex;
@@ -344,14 +333,13 @@
     transform:scale(1.05);
   }
   .cast-card .info{
-    padding:18px 20px 22px;
+    padding:16px 0 0;
   }
   .cast-card.no-image{
     justify-content:center;
-    min-height:100%;
   }
   .cast-card.no-image .info{
-    padding:34px 26px;
+    padding:0;
   }
   .cast-card.no-image::before{
     content:"";
@@ -373,11 +361,13 @@
     font-size:17px;
     font-weight:400;
     margin-bottom:8px;
+    text-shadow:0 2px 14px rgba(0,0,0,0.85);
   }
   .cast-card p{
     font-size:13px;
     color:var(--ink-dim);
     line-height:1.5;
+    text-shadow:0 2px 14px rgba(0,0,0,0.85);
   }
 
   /* ---------- THEMES ---------- */
@@ -423,7 +413,7 @@
   .theme-item:nth-child(3) h4{ font-size:25px; }
   .theme-item:nth-child(3) p{ font-size:15.5px; }
 
-  .theme-item:nth-child(4){ margin-left:32%; max-width:420px; flex-direction:row-reverse; text-align:right; }
+  .theme-item:nth-child(4){ margin-left:32%; max-width:420px; }
   .theme-item:nth-child(4) h4{ font-size:19px; }
   .theme-item:nth-child(4) p{ font-size:14px; }
 
@@ -446,19 +436,15 @@
   .ready-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:1px;
-    background:rgba(236,228,214,0.14);
-    border:1px solid rgba(236,228,214,0.14);
+    gap:36px 40px;
     max-width:880px;
   }
   @media (max-width:700px){
-    .ready-grid{grid-template-columns:1fr;}
+    .ready-grid{grid-template-columns:1fr; gap:32px;}
   }
   .ready-card{
-    background:var(--glass);
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
-    padding:30px 28px;
+    border-left:1px solid rgba(236,228,214,0.3);
+    padding-left:20px;
   }
   .ready-card h4{
     font-size:16px;
@@ -466,10 +452,12 @@
     margin-bottom:10px;
     text-transform:uppercase;
     letter-spacing:0.03em;
+    text-shadow:0 2px 14px rgba(0,0,0,0.85);
   }
   .ready-card p{
     color:var(--ink-dim);
     font-size:14px;
+    text-shadow:0 2px 14px rgba(0,0,0,0.85);
   }
 
   /* ---------- CONTACT / FOOTER ---------- */
@@ -620,7 +608,7 @@
   </div>
 </section>
 
-<section id="world" class="slide bg-world">
+<section id="world" class="slide bg-world darker">
   <div class="wrap">
     <div class="eyebrow">Genre · Tone · Comparables</div>
     <h2 class="section-title">The World of the Film</h2>
@@ -682,14 +670,16 @@
           <p>A hairstylist and singer-songwriter; Henry's affair, his moral conscience, and ultimately his savior.</p>
         </div>
       </div>
-      <div class="cast-card no-image">
+      <div class="cast-card">
+        <div class="imgwrap"><img src="stanley-frankel.jpg" alt="Stanley Frankel"></div>
         <div class="info">
           <div class="tag">Producer</div>
           <h4>Stanley Frankel</h4>
           <p>Grand Symphony producer who "discovers" Henry, then coldly discards him for someone newer.</p>
         </div>
       </div>
-      <div class="cast-card no-image">
+      <div class="cast-card">
+        <div class="imgwrap"><img src="theo-grin.jpg" alt="William Chester"></div>
         <div class="info">
           <div class="tag">The Rival Prodigy</div>
           <h4>William Chester</h4>
@@ -704,7 +694,8 @@
           <p>The elderly piano tuner who first senses the instrument is haunted.</p>
         </div>
       </div>
-      <div class="cast-card no-image">
+      <div class="cast-card">
+        <div class="imgwrap"><img src="aunt-margaret.jpg" alt="Aunt Margaret"></div>
         <div class="info">
           <div class="tag">The Donor</div>
           <h4>Aunt Margaret</h4>
