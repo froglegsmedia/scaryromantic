@@ -540,7 +540,13 @@
   @media (max-width:640px){
     .wrap{padding:0 6vw;}
     .slide{padding:90px 0;}
-    header.nav{padding:18px 6vw;}
+    header.nav{
+      padding:16px 6vw;
+      background:rgba(8,6,5,0.92);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--line);
+    }
     h2.section-title{margin-bottom:26px;}
 
     .hero-inner{padding-bottom:6vh;}
