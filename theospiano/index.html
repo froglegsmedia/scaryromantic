@@ -522,6 +522,56 @@
     border-top:1px solid var(--line);
     background:var(--bg);
   }
+
+  /* ---------- MOBILE TIGHTENING ---------- */
+  @media (max-width:640px){
+    .wrap{padding:0 6vw;}
+    .slide{padding:90px 0;}
+    header.nav{padding:18px 6vw;}
+    h2.section-title{margin-bottom:26px;}
+
+    .hero-inner{padding-bottom:6vh;}
+    .hero-eyebrow{margin-bottom:16px;}
+    .hero-sub{margin-top:14px; font-size:15px;}
+
+    .logline p{font-size:20px;}
+
+    .glass-panel{max-width:100%;}
+    .glass-panel p{font-size:15.5px;}
+
+    .lead-slide .lead-content{max-width:100%;}
+    .lead-slide p{max-width:100%; font-size:15.5px;}
+    .lead-slide.align-right .lead-content{margin-left:0; text-align:left;}
+    .lead-slide.align-right p{margin-left:0;}
+
+    .acts, .world-grid, .ready-grid{gap:26px;}
+    .act p, .world-grid p, .ready-card p{font-size:14px;}
+
+    .cast-grid{grid-template-columns:1fr 1fr; gap:22px 18px;}
+    .cast-card h4{font-size:16px;}
+    .cast-card p{font-size:12.5px;}
+
+    .theme-list{max-width:100%; margin-left:0;}
+    .theme-item{margin-bottom:34px; gap:14px;}
+    .theme-item:nth-child(1),
+    .theme-item:nth-child(2),
+    .theme-item:nth-child(3),
+    .theme-item:nth-child(4),
+    .theme-item:nth-child(5){
+      margin-left:0;
+      max-width:100%;
+    }
+    .theme-item:nth-child(2) h4{font-size:19px;}
+    .theme-item:nth-child(3) h4{font-size:21px;}
+    .theme-item:nth-child(4) h4{font-size:18px;}
+
+    .contact-details a{font-size:14px;}
+    footer{padding:24px 6vw; font-size:10px;}
+  }
+
+  @media (max-width:420px){
+    .cast-grid{grid-template-columns:1fr; max-width:360px;}
+  }
 </style>
 </head>
 <body>
