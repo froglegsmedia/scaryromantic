@@ -176,11 +176,49 @@
   }
   #topnav .links a:hover{color:var(--bone);}
   #topnav .links a.active{color:var(--rust-bright);border-bottom-color:var(--rust-bright);}
+  #topnav .menu-toggle{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    width:26px;height:20px;
+    background:none;border:none;padding:0;
+    cursor:pointer;
+    flex:0 0 auto;
+  }
+  #topnav .menu-toggle span{
+    display:block;height:1px;width:100%;
+    background:var(--bone);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  #topnav .menu-toggle.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  #topnav .menu-toggle.open span:nth-child(2){opacity:0;}
+  #topnav .menu-toggle.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
   @media (max-width:640px){
     #topnav{height:52px;padding:0 16px;gap:16px;}
     #topnav .brand{font-size:9.5px;}
-    #topnav .links{gap:20px;}
-    #topnav .links a{font-size:10px;}
+    #topnav .menu-toggle{display:flex;}
+    #topnav .links{
+      display:none;
+      position:absolute;
+      top:52px;left:0;right:0;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      padding:6px 16px 18px;
+      background:rgba(8,7,10,.98);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid rgba(223,214,196,.12);
+      overflow-x:visible;
+    }
+    #topnav .links.open{display:flex;}
+    #topnav .links a{
+      font-size:13px;
+      width:100%;
+      padding:12px 0;
+      border-bottom:1px solid rgba(223,214,196,.08);
+    }
+    #topnav .links a:last-child{border-bottom:none;}
   }
 
   /* ---------- shared section styles ---------- */
@@ -671,7 +709,7 @@
     border-left:1px solid var(--line);
   }
   .why-card:first-child{border-left:none;padding-left:0;}
-  @media (max-width:900px){
+  @media (min-width:521px) and (max-width:900px){
     .why-grid{grid-template-columns:repeat(2,1fr);row-gap:34px;}
     .why-card:nth-child(2n){border-left:1px solid var(--line);padding-left:24px;}
     .why-card:nth-child(2n+1){border-left:none;padding-left:0;}
@@ -813,7 +851,10 @@
 
 <nav id="topnav">
   <a href="#hero" class="brand">They Live Among the Trees</a>
-  <div class="links">
+  <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="links" id="navLinks">
     <a href="#logline" data-name="Logline">Logline</a>
     <a href="#synopsis" data-name="Synopsis">Synopsis</a>
     <a href="#characters" data-name="Characters">Characters</a>
@@ -1101,7 +1142,7 @@
   </div>
 </section>
 
-<footer>They Live Among the Trees &middot; Feature Film &middot; &copy; Tyler Forrest</footer>
+<footer>They Live Among the Trees &middot; Feature Film &middot; &copy; Scary Romantic</footer>
 
 <script>
   // reveal on scroll
@@ -1135,6 +1176,22 @@
     });
   }, {threshold:.5});
   sections.forEach(s=>navIo.observe(s));
+
+  // mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinksEl = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', ()=>{
+    const isOpen = navLinksEl.classList.toggle('open');
+    menuToggle.classList.toggle('open', isOpen);
+    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  navLinksEl.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      navLinksEl.classList.remove('open');
+      menuToggle.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 
   // hero parallax
   const heroBg = document.getElementById('heroBg');
