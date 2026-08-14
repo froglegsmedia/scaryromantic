@@ -843,6 +843,16 @@
     text-transform:uppercase;
   }
   footer .footer-copy{white-space:nowrap;}
+  /* mobile browsers (especially iOS Safari) frequently fail to paint
+     background-attachment:fixed when combined with filter/backdrop effects,
+     which can render as solid black. disable the fixed attachment below
+     desktop widths so the photos actually show up. */
+  @media (max-width:900px){
+    #logline .bg, #hook .bg, #characters .bg, #world .bg,
+    #tone .bg, #why .bg, #franchise .bg, #contact .bg{
+      background-attachment:scroll;
+    }
+  }
 </style>
 </head>
 <body>
