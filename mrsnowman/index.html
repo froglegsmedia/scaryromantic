@@ -24,16 +24,17 @@
 -->
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Gaegu:wght@400;700&family=Special+Elite&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Gaegu:wght@400;700&family=Special+Elite&family=Rock+Salt&display=swap');
 
   :root{
-    --parchment: #d9cfa9;
-    --parchment-dark: #c7bb90;
-    --ink: #2a2318;
-    --rust: #6f2a1a;
-    --mold: #5c6a3d;
-    --mold-light: #7c8a52;
-    --stain: #8a7a4a;
+    --parchment: #131c26;
+    --parchment-dark: #0a1119;
+    --ink: #cdd6de;
+    --ink-dark: #171310;
+    --rust: #c14f31;
+    --mold: #3f5a63;
+    --mold-light: #7f9aa3;
+    --stain: #4a6472;
   }
 
   *{ box-sizing: border-box; }
@@ -99,9 +100,9 @@
     padding: 6vh 5vw;
     overflow:hidden;
     background:
-      radial-gradient(ellipse at 20% 15%, rgba(92,106,61,0.35), transparent 45%),
-      radial-gradient(ellipse at 85% 80%, rgba(111,42,26,0.30), transparent 50%),
-      radial-gradient(ellipse at 50% 50%, var(--parchment) 0%, var(--parchment-dark) 60%, #24200f 130%);
+      radial-gradient(ellipse at 20% 15%, rgba(40,70,105,0.45), transparent 45%),
+      radial-gradient(ellipse at 85% 80%, rgba(140,40,30,0.25), transparent 50%),
+      radial-gradient(ellipse at 50% 50%, var(--parchment) 0%, var(--parchment-dark) 60%, #020305 130%);
   }
 
   .hero-content{
@@ -146,9 +147,9 @@
   }
 
   h1.poster-fallback-title{
-    font-family:'Creepster', cursive;
-    font-size: clamp(3.2rem, 12vw, 8rem);
-    line-height:0.95;
+    font-family:'Rock Salt', cursive;
+    font-size: clamp(2.4rem, 9vw, 5.5rem);
+    line-height:1.15;
     margin:0;
     color: #efe6c9;
     letter-spacing:0.02em;
@@ -214,13 +215,13 @@
     gap: 4rem;
     align-items:center;
     justify-content:center;
-    border-top: 2px dashed rgba(42,35,24,0.3);
+    border-top: 2px dashed rgba(217,206,173,0.15);
   }
   .storybook::before{
     content:"";
     position:absolute;
     inset:0;
-    background: radial-gradient(ellipse at 10% 90%, rgba(92,106,61,0.25), transparent 55%);
+    background: radial-gradient(ellipse at 10% 90%, rgba(40,70,105,0.3), transparent 55%);
     pointer-events:none;
   }
 
@@ -238,9 +239,9 @@
     aspect-ratio: 1/1;
     overflow:hidden;
     background:
-      radial-gradient(ellipse at 30% 20%, rgba(92,106,61,0.5), transparent 60%),
+      radial-gradient(ellipse at 30% 20%, rgba(40,70,105,0.5), transparent 60%),
       radial-gradient(ellipse at 70% 80%, rgba(111,42,26,0.45), transparent 65%),
-      linear-gradient(160deg, #3a3222, #171208);
+      linear-gradient(160deg, #1c2530, #0a0e13);
   }
   .photo-frame .photo-inner img{
     width:100%;
@@ -257,7 +258,7 @@
     font-family:'Special Elite', monospace;
     font-size:0.7rem;
     letter-spacing:0.05em;
-    color: var(--ink);
+    color: var(--ink-dark);
     opacity:0.6;
   }
 
@@ -278,18 +279,19 @@
   footer{
     text-align:center;
     padding: 3rem 5vw 3.5rem;
-    background: #1c170d;
-    color: rgba(217,207,169,0.55);
+    background: #060a0f;
+    color: rgba(205,214,222,0.55);
     font-family:'Special Elite', monospace;
     font-size:0.75rem;
     letter-spacing:0.15em;
   }
   footer .foot-title{
-    font-family:'Creepster', cursive;
-    font-size:1.4rem;
-    color: rgba(217,207,169,0.8);
-    letter-spacing:0.05em;
-    margin-bottom:0.6rem;
+    font-family:'Rock Salt', cursive;
+    font-size:1.15rem;
+    color: rgba(205,214,222,0.85);
+    letter-spacing:0.02em;
+    margin-bottom:0.8rem;
+    transform: rotate(-1.5deg);
   }
 
   @media (max-width: 640px){
@@ -306,13 +308,13 @@
 
 <section class="hero">
   <div class="hero-content">
-    <div class="kicker">every family has one</div>
+    <div class="kicker">from a journal, undated</div>
 
     <div class="poster-wrap" id="posterWrap">
       <h1 class="poster-fallback-title">MR. SNOWMAN
         <span class="not">he is not a snowman. he never was.</span>
       </h1>
-      <img class="poster-img" src="hero.jpg" alt="Mr. Snowman — coming soon"
+      <img class="poster-img" src="images/hero.jpg" alt="Mr. Snowman — coming soon"
            onerror="document.getElementById('posterWrap').classList.add('img-missing'); this.style.display='none';">
     </div>
 
@@ -324,17 +326,17 @@
 <section class="storybook">
   <div class="photo-frame">
     <div class="photo-inner">
-      <!-- Swap by adding artifact.jpg — shows automatically -->
-      <img src="artifact.jpg" alt="" onerror="this.style.display='none'">
+      <!-- Swap by adding images/artifact.jpg — shows automatically -->
+      <img src="images/artifact.jpg" alt="" onerror="this.style.display='none'">
     </div>
-    <div class="caption">the last picture from that summer</div>
+    <div class="caption">she was already walking toward him</div>
   </div>
 
   <div class="storybook-text">
-    <p>She says he visits at night.</p>
-    <p>She says he's not a snowman.</p>
-    <p>She's right. He never was.</p>
-    <p class="whisper">it isn't a phase. it's in the blood.</p>
+    <p>She drew him again last night.</p>
+    <p>Same too-long arms. Same smile.</p>
+    <p>I burned mine when I was nine.</p>
+    <p class="whisper">He found her anyway.</p>
   </div>
 </section>
 
