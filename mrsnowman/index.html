@@ -8,20 +8,18 @@
 
 <!--
   ============================================================
-  HOW TO ADD YOUR OWN PICTURES (read this, then delete it)
+  HOW TO SWAP PICTURES LATER (read this, then delete it)
   ============================================================
-  This page is fully built and works right now with NO images —
-  the creepy backdrops you see are pure CSS. When you're ready
-  to drop in real art/photos, just add files with these exact
-  names into the "images" folder next to this HTML file:
+  images/hero.jpg      -> the main poster art, shown large in
+                           the first screen
+  images/artifact.jpg  -> the smaller "found photo" in the
+                           second section
 
-    images/hero.jpg        -> big full-bleed background image
-    images/artifact.jpg    -> the small torn "found photo" in
-                               the storybook section
-
-  That's it. Nothing else needs to change — the <img> tags
-  below will pick them up automatically and the CSS placeholder
-  art will sit quietly behind them as a fallback.
+  To change either image, just replace the file at that path
+  with a new one of the same name — nothing else needs editing.
+  If a file is ever missing, the page falls back gracefully
+  (a CSS-only title stands in for the hero; the photo frame
+  just goes empty).
   ============================================================
 -->
 
@@ -106,29 +104,35 @@
       radial-gradient(ellipse at 50% 50%, var(--parchment) 0%, var(--parchment-dark) 60%, #24200f 130%);
   }
 
-  .hero-image-frame{
-    position:absolute;
-    inset:0;
-    z-index:0;
-  }
-  .hero-image-frame img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center;
-    opacity:0.55;
-    filter: sepia(0.35) contrast(1.1) saturate(0.8);
-  }
-  .hero-image-frame::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background: linear-gradient(180deg, rgba(30,25,15,0.15), rgba(20,16,10,0.75) 85%);
-  }
-
   .hero-content{
     position:relative;
     z-index:2;
+  }
+
+  /* ---------- featured poster art ---------- */
+  .poster-wrap{
+    position:relative;
+    display:inline-block;
+    margin: 0 auto;
+    transform: rotate(-1.1deg);
+  }
+  .poster-img{
+    display:block;
+    max-width: min(460px, 88vw);
+    max-height: 80vh;
+    width:auto;
+    height:auto;
+    border: 6px solid #efe6c9;
+    box-shadow:
+      0 18px 40px rgba(10,8,4,0.6),
+      0 0 0 1px rgba(0,0,0,0.4);
+    filter: contrast(1.05) saturate(0.92);
+  }
+  .poster-fallback-title{
+    display:none;
+  }
+  .poster-wrap.img-missing .poster-fallback-title{
+    display:block;
   }
 
   .kicker{
@@ -141,7 +145,7 @@
     opacity:0.85;
   }
 
-  h1.title{
+  h1.poster-fallback-title{
     font-family:'Creepster', cursive;
     font-size: clamp(3.2rem, 12vw, 8rem);
     line-height:0.95;
@@ -155,7 +159,7 @@
     animation: flicker 5.5s infinite;
     transform: rotate(-1.2deg);
   }
-  h1.title .not{
+  h1.poster-fallback-title .not{
     display:block;
     font-family:'Special Elite', monospace;
     font-size: clamp(0.75rem, 2vw, 1rem);
@@ -180,52 +184,6 @@
     72%{ opacity:1; }
     73%{ opacity:0.3; }
     74%{ opacity:1; }
-  }
-
-  .teaser{
-    margin: 2.4rem auto 0;
-    max-width: 34rem;
-    font-size: clamp(1.15rem, 2.6vw, 1.55rem);
-    line-height:1.55;
-  }
-  .teaser p{
-    opacity:0;
-    transform: translateY(10px);
-    animation: revealLine 1.1s ease forwards;
-    margin: 0.35rem 0;
-  }
-  .teaser p:nth-child(1){ animation-delay: 0.6s; }
-  .teaser p:nth-child(2){ animation-delay: 1.7s; }
-  .teaser p:nth-child(3){ animation-delay: 2.8s; color: var(--rust); font-weight:700; }
-  .teaser p:nth-child(4){ animation-delay: 4.0s; }
-  @keyframes revealLine{
-    to{ opacity:0.92; transform:translateY(0); }
-  }
-
-  .stamp{
-    display:inline-block;
-    margin-top:3rem;
-    padding: 0.6rem 1.6rem;
-    border: 3px solid var(--rust);
-    color: var(--rust);
-    font-family:'Special Elite', monospace;
-    letter-spacing:0.3em;
-    font-size:0.95rem;
-    text-transform:uppercase;
-    transform: rotate(-4deg);
-    opacity:0;
-    animation: stampIn 0.4s ease forwards, stampFlicker 4s infinite;
-    animation-delay: 5.1s, 6s;
-    -webkit-mask-image: radial-gradient(circle at 30% 40%, transparent 3%, black 3.2%), radial-gradient(circle at 70% 60%, transparent 2%, black 2.2%);
-  }
-  @keyframes stampIn{
-    from{ opacity:0; transform: rotate(-4deg) scale(1.4); }
-    to{ opacity:0.85; transform: rotate(-4deg) scale(1); }
-  }
-  @keyframes stampFlicker{
-    0%,92%,100%{ opacity:0.85; }
-    93%{ opacity:0.3; }
-    95%{ opacity:0.85; }
   }
 
   .scroll-hint{
@@ -277,7 +235,7 @@
   }
   .photo-frame .photo-inner{
     position:relative;
-    aspect-ratio: 4/5;
+    aspect-ratio: 1/1;
     overflow:hidden;
     background:
       radial-gradient(ellipse at 30% 20%, rgba(92,106,61,0.5), transparent 60%),
@@ -347,25 +305,17 @@
 <div class="glitch-flash" id="glitchFlash"></div>
 
 <section class="hero">
-  <div class="hero-image-frame">
-    <!-- Swap by adding images/hero.jpg — shows automatically, no code changes needed -->
-    <img src="images/hero.jpg" alt="" onerror="this.style.display='none'">
-  </div>
-
   <div class="hero-content">
     <div class="kicker">every family has one</div>
-    <h1 class="title">MR. SNOWMAN
-      <span class="not">he is not a snowman. he never was.</span>
-    </h1>
 
-    <div class="teaser">
-      <p>Every child invents someone to play with.</p>
-      <p>Someone only they can see.</p>
-      <p>Mine had a name.</p>
-      <p>He said he'd wait for me to have a girl of my own.</p>
+    <div class="poster-wrap" id="posterWrap">
+      <h1 class="poster-fallback-title">MR. SNOWMAN
+        <span class="not">he is not a snowman. he never was.</span>
+      </h1>
+      <img class="poster-img" src="images/hero.jpg" alt="Mr. Snowman — coming soon"
+           onerror="document.getElementById('posterWrap').classList.add('img-missing'); this.style.display='none';">
     </div>
 
-    <div class="stamp">Coming Soon</div>
   </div>
 
   <div class="scroll-hint">keep going &darr;</div>
@@ -377,7 +327,7 @@
       <!-- Swap by adding images/artifact.jpg — shows automatically -->
       <img src="images/artifact.jpg" alt="" onerror="this.style.display='none'">
     </div>
-    <div class="caption">found among her drawings</div>
+    <div class="caption">the last picture from that summer</div>
   </div>
 
   <div class="storybook-text">
