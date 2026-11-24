@@ -162,7 +162,7 @@
   /* HERO */
   .hero {
     position: relative;
-    padding: calc(var(--nav) + 36px) 0 72px;
+    padding: calc(var(--nav) + 28px) 0 40px;
     background:
       linear-gradient(180deg, rgba(225, 6, 0, 0.16), transparent 28%),
       radial-gradient(ellipse at 78% 18%, rgba(225, 6, 0, 0.32), transparent 46%),
@@ -184,7 +184,7 @@
   .hero-art { grid-area: art; }
   .hero-rest { grid-area: rest; align-self: start; }
   .hero h1 {
-    font-size: clamp(88px, 11vw, 156px);
+    font-size: clamp(84px, 9.2vw, 128px);
   }
   .tagline {
     font-family: var(--cond);
@@ -230,6 +230,20 @@
     border-color: var(--crimson);
   }
   .btn-solid:hover { background: var(--ember); border-color: var(--ember); color: #fff; }
+  .outline-btn {
+    flex-basis: 100%;
+    width: fit-content;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-color: var(--crimson);
+    color: #fff;
+  }
+  .outline-btn:hover { background: var(--crimson); color: #fff; }
+  .years-outline { margin: 28px 0 0; }
   .byline {
     margin: 22px 0 0;
     font-family: var(--cond);
@@ -863,6 +877,7 @@
     <li><a href="#years">Years</a></li>
     <li><a href="#people">People</a></li>
     <li><a href="#format">Format</a></li>
+    <li><a href="outline.html">Outline</a></li>
     <li><a href="#inquire">Inquire</a></li>
   </ul>
 </header>
@@ -908,6 +923,7 @@
         <div class="cta-row">
           <a class="btn btn-solid" href="#years">Enter the years</a>
           <a class="btn" href="mailto:contact@scaryromantic.com">Inquire</a>
+          <a class="btn outline-btn" href="outline.html">Read the Full Script Outline</a>
         </div>
         <p class="byline">Written by Tyler Forrest</p>
       </div>
@@ -1116,6 +1132,9 @@
         <p class="year-count" id="year-count">1 / 7</p>
         <button type="button" id="year-next">Next year</button>
       </div>
+      <p class="years-outline">
+        <a class="btn btn-solid" href="outline.html">Read the Full Script Outline</a>
+      </p>
     </div>
   </section>
 
