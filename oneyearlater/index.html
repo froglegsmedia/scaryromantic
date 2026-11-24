@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Year Later — A 6-Part Crime Thriller</title>
+<meta name="description" content="One Year Later: after a botched bank robbery, two lifelong friends spend six years on the run. Every chapter begins exactly one year later. A Scary Romantic crime thriller by Tyler Forrest.">
+<meta name="theme-color" content="#080808">
+<link rel="canonical" href="https://www.scaryromantic.com/oneyearlater/">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="One Year Later">
+<meta property="og:description" content="Six years. Two friends. One hunt that never ends. A 6-part crime thriller from Scary Romantic.">
+<meta property="og:url" content="https://www.scaryromantic.com/oneyearlater/">
+<meta property="og:image" content="https://www.scaryromantic.com/oneyearlater/images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One Year Later">
+<meta name="twitter:description" content="Six years. Two friends. One hunt that never ends.">
+<meta name="twitter:image" content="https://www.scaryromantic.com/oneyearlater/images/og.jpg">
+
+<link rel="preload" href="fonts/lunarvelvetdidone-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="images/poster-hunt.jpg" as="image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+  @font-face {
+    font-family: "Lunar Velvet Didone";
+    src: url("fonts/lunarvelvetdidone-regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  :root {
+    --bg: #080808;
+    --bg-2: #100e0c;
+    --paper: #e6dece;
+    --paper-ink: #1b1612;
+    --ink: #f4efe6;
+    --muted: #c4baae;
+    --dim: #9a9086;
+    --blood: #8b1a1a;
+    --ember: #e15d4e;
+    --line: rgba(244, 239, 230, 0.14);
+    --display: "Lunar Velvet Didone", Georgia, "Times New Roman", serif;
+    --serif: "Cormorant Garamond", Georgia, serif;
+    --sans: Inter, "Helvetica Neue", Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --nav: 68px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  section, .year-panel, .dossier-panel { scroll-margin-top: 84px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+  img { max-width: 100%; display: block; }
+  button, input { font: inherit; color: inherit; }
+  a { color: inherit; }
+  :focus-visible {
+    outline: 2px solid var(--ember);
+    outline-offset: 3px;
+  }
+  ::selection { background: var(--blood); color: #fff; }
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    white-space: nowrap; border: 0;
+  }
+  .wrap {
+    width: min(1120px, calc(100% - 48px));
+    margin: 0 auto;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin: 0 0 14px;
+  }
+  h1, h2, h3, .display {
+    font-family: var(--display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 0.92;
+    margin: 0;
+  }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 40;
+    height: var(--nav);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 22px;
+    background: rgba(8, 8, 8, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    min-width: 0;
+  }
+  .brand img { width: 28px; height: 32px; object-fit: contain; }
+  .brand-name {
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-toggle {
+    display: none;
+    width: 44px; height: 44px;
+    border: 0;
+    background: transparent;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    display: block;
+    height: 1px;
+    background: var(--ink);
+    margin: 6px 0;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    padding: calc(var(--nav) + 36px) 0 72px;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(139, 26, 26, 0.22), transparent 46%),
+      radial-gradient(ellipse at 10% 90%, rgba(139, 26, 26, 0.08), transparent 40%),
+      var(--bg);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(260px, 0.78fr);
+    grid-template-areas: "intro art" "rest art";
+    column-gap: 56px;
+    row-gap: 28px;
+    align-items: center;
+  }
+  .hero-intro { grid-area: intro; }
+  .hero-art { grid-area: art; }
+  .hero-rest { grid-area: rest; align-self: start; }
+  .hero h1 {
+    font-size: clamp(64px, 8vw, 112px);
+  }
+  .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: 1.25;
+    color: var(--ink);
+    margin: 22px 0 0;
+    max-width: 16ch;
+    min-height: 2.6em;
+  }
+  .logline {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 42ch;
+    margin: 0 0 26px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    text-decoration: none;
+    border: 1px solid rgba(244, 239, 230, 0.28);
+    background: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .btn:hover { border-color: var(--ink); }
+  .btn-solid {
+    background: var(--ink);
+    color: #14110e;
+    border-color: var(--ink);
+  }
+  .btn-solid:hover { background: #fff; }
+  .byline {
+    margin: 22px 0 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .hero-poster {
+    display: block;
+    width: min(100%, 440px);
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    background: #111;
+    cursor: zoom-in;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+  }
+  .hero-poster img { width: 100%; height: auto; }
+  .art-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    width: min(100%, 440px);
+    margin: 12px auto 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    width: min(100%, 440px);
+    margin: 12px auto 0;
+  }
+  .thumb {
+    padding: 0;
+    border: 1px solid rgba(244, 239, 230, 0.16);
+    background: #111;
+    cursor: pointer;
+    opacity: 0.62;
+  }
+  .thumb img { width: 100%; height: auto; }
+  .thumb:hover { opacity: 0.9; }
+  .thumb[aria-selected="true"] {
+    opacity: 1;
+    border-color: var(--ember);
+  }
+
+  /* STORY */
+  .paper {
+    background: var(--paper);
+    color: var(--paper-ink);
+    padding: 88px 0;
+  }
+  .paper .eyebrow { color: var(--blood); }
+  .paper h2 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(30px, 4.4vw, 52px);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    max-width: 18em;
+  }
+  .story { padding: 88px 0; }
+  .story-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .rule-list { list-style: none; margin: 28px 0 0; padding: 0; }
+  .rule-list li {
+    border-top: 1px solid var(--line);
+    padding: 16px 0;
+  }
+  .rule-list strong {
+    display: block;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .rule-list span { color: var(--muted); font-size: 15px; }
+  .prose p { margin: 0 0 18px; color: var(--muted); }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--ink); font-weight: 500; }
+
+  /* YEARS */
+  .years {
+    padding: 28px 0 96px;
+    border-top: 1px solid var(--line);
+  }
+  .years-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: end;
+    margin-bottom: 28px;
+  }
+  .years h2 { font-size: clamp(48px, 6vw, 80px); }
+  .hint {
+    margin: 0;
+    max-width: 28ch;
+    color: var(--dim);
+    font-size: 14px;
+    text-align: right;
+  }
+  .stepper-wrap {
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 22px;
+    scrollbar-color: var(--blood) transparent;
+  }
+  .stepper { display: flex; gap: 8px; min-width: max-content; }
+  .step {
+    width: 138px;
+    text-align: left;
+    padding: 12px 10px 12px;
+    border: 0;
+    border-top: 2px solid rgba(244, 239, 230, 0.2);
+    background: transparent;
+    cursor: pointer;
+    color: var(--dim);
+  }
+  .step.is-past, .step[aria-selected="true"] { border-top-color: var(--ember); }
+  .step[aria-selected="true"] { color: var(--ink); }
+  .step-num {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--ember);
+    margin-bottom: 8px;
+  }
+  .step-name {
+    display: block;
+    font-family: var(--display);
+    font-size: 20px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .step-loc {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .year-panel {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    padding: 32px 32px 28px;
+  }
+  .js .year-panel { display: none; }
+  .js .year-panel.is-on { display: block; animation: rise 0.35s ease; }
+  .year-panel h3 {
+    font-size: clamp(42px, 5vw, 68px);
+    margin-bottom: 18px;
+  }
+  .meta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .meta-row p { margin: 0; }
+  .meta-row span {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 4px;
+  }
+  .short {
+    font-family: var(--serif);
+    font-size: 26px;
+    line-height: 1.35;
+    margin: 0 0 18px;
+    max-width: 40ch;
+  }
+  .beats { border-top: 1px solid var(--line); padding-top: 8px; }
+  .beats summary {
+    list-style: none;
+    cursor: pointer;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+  .beats summary::-webkit-details-marker { display: none; }
+  .beats summary::before {
+    content: "+";
+    display: inline-block;
+    width: 1.2em;
+  }
+  .beats[open] summary::before { content: "–"; }
+  .beats[open] .when-closed, .beats:not([open]) .when-open { display: none; }
+  .beats-copy { color: var(--muted); max-width: 68ch; padding-bottom: 8px; }
+  .beats-copy p { margin: 0 0 14px; }
+  .year-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .year-nav button {
+    min-height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    background: transparent;
+    cursor: pointer;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  .year-nav button:hover:not(:disabled) { border-color: var(--ink); }
+  .year-nav button:disabled { opacity: 0.35; cursor: default; }
+  .year-count {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    color: var(--dim);
+  }
+
+  /* PEOPLE */
+  .people {
+    padding: 88px 0;
+    border-top: 1px solid var(--line);
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba(139, 26, 26, 0.14), transparent 42%),
+      var(--bg);
+  }
+  .people h2 { font-size: clamp(48px, 6vw, 80px); margin-bottom: 28px; }
+  .people-grid {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+  }
+  .who {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .who button {
+    text-align: left;
+    padding: 12px 12px;
+    border: 1px solid transparent;
+    border-left: 2px solid rgba(244, 239, 230, 0.2);
+    background: transparent;
+    cursor: pointer;
+    color: var(--dim);
+  }
+  .who button[aria-selected="true"] {
+    color: var(--ink);
+    border-left-color: var(--ember);
+    background: rgba(244, 239, 230, 0.03);
+  }
+  .who small {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 4px;
+  }
+  .who strong {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1;
+  }
+  .dossier-panel { padding: 8px 8px 8px 12px; }
+  .js .dossier-panel { display: none; }
+  .js .dossier-panel.is-on { display: block; animation: rise 0.35s ease; }
+  .dossier-panel h3 { font-size: clamp(56px, 7vw, 92px); }
+  .role {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    margin: 10px 0 22px;
+  }
+  .facts { display: grid; gap: 18px; }
+  .fact { border-top: 1px solid var(--line); padding-top: 14px; }
+  .fact h4 {
+    margin: 0 0 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+  }
+  .fact p { margin: 0; color: var(--muted); max-width: 62ch; }
+  .beats-mini { display: grid; gap: 10px; margin-top: 8px; }
+  .beats-mini div {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 12px;
+    align-items: baseline;
+  }
+  .beats-mini b {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  /* FORMAT */
+  .format { padding: 88px 0; border-top: 1px solid var(--line); }
+  .format h2 { font-size: clamp(48px, 6vw, 78px); max-width: 12ch; }
+  .lede {
+    color: var(--muted);
+    max-width: 46ch;
+    font-size: 18px;
+  }
+  .modes {
+    display: flex;
+    gap: 8px;
+    margin: 28px 0 18px;
+  }
+  .modes button {
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    background: transparent;
+    cursor: pointer;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--dim);
+  }
+  .modes button[aria-pressed="true"] {
+    color: #14110e;
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .delivery-line {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(26px, 3vw, 36px);
+    line-height: 1.3;
+    margin: 0 0 28px;
+    max-width: 22em;
+    min-height: 2.6em;
+  }
+  .mode-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .mode-card {
+    border: 1px solid var(--line);
+    padding: 24px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .mode-card.is-hot {
+    border-color: rgba(225, 93, 78, 0.7);
+    background: rgba(139, 26, 26, 0.08);
+  }
+  .mode-card h3 {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  .mode-card p { margin: 0; color: var(--muted); }
+  .after {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    max-width: 70ch;
+  }
+  .after strong { color: var(--ink); font-weight: 500; }
+
+  /* CONTACT */
+  .inquire {
+    padding: 96px 0 80px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(139, 26, 26, 0.2), transparent 55%),
+      var(--bg);
+  }
+  .inquire h2 { font-size: clamp(56px, 8vw, 104px); }
+  .inquire .tag {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--muted);
+    margin: 16px 0 28px;
+  }
+  .email {
+    font-family: var(--display);
+    font-size: clamp(22px, 3vw, 36px);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(139, 26, 26, 0.8);
+    padding-bottom: 4px;
+  }
+  .email:hover { border-bottom-color: var(--ember); }
+  .inquire .fine {
+    margin: 28px 0 0;
+    color: var(--dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .inquire .fine a { color: var(--muted); }
+  footer {
+    padding: 22px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: var(--dim);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  footer a { color: var(--dim); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  /* LIGHTBOX */
+  dialog.lb {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 18px 18px 22px;
+    border: 0;
+    background: #080808;
+    color: var(--ink);
+  }
+  dialog.lb::backdrop { background: #080808; }
+  .lb-top, .lb-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: min(920px, 100%);
+    margin: 0 auto;
+  }
+  .lb-top p, .lb-cap {
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .lb-close, .lb-nav button {
+    min-height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    background: transparent;
+    cursor: pointer;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 11px;
+  }
+  .lb-figure {
+    margin: 12px auto;
+    width: min(520px, 100%);
+    max-height: calc(100vh - 160px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .lb-figure img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 200px);
+    object-fit: contain;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+  }
+  .lb-cap { margin-top: 10px; text-align: center; }
+  .lb-bottom { justify-content: center; }
+  .lb-nav { display: flex; gap: 8px; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .year-panel.is-on,
+    .js .dossier-panel.is-on { animation: none; }
+  }
+
+  @media (max-width: 900px) {
+    .wrap { width: min(1120px, calc(100% - 32px)); }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas: "intro" "art" "rest";
+      row-gap: 22px;
+    }
+    .hero { padding-bottom: 56px; }
+    .hero-art { display: flex; flex-direction: column; align-items: center; }
+  .hero-poster { width: fit-content; max-width: min(92vw, 440px); }
+  .hero-poster img { width: auto; max-width: min(92vw, 440px); max-height: 56vh; }
+  .thumbs, .art-caption { width: min(92vw, 440px); }
+    .story-grid, .people-grid, .mode-grid, .meta-row {
+      grid-template-columns: 1fr;
+    }
+    .years-head { flex-direction: column; align-items: start; }
+    .hint { text-align: left; }
+    .tagline { max-width: 20ch; min-height: 0; }
+  }
+  @media (max-width: 720px) {
+    .hero { padding-top: calc(var(--nav) + 16px); }
+    .hero h1 { font-size: 68px; }
+    .tagline { font-size: 22px; margin-top: 12px; }
+    .hero-poster img { max-height: 46vh; }
+    .nav-toggle { display: block; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: var(--nav);
+      left: 0; right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: #080808;
+      border-bottom: 1px solid var(--line);
+      padding: 8px 0 14px;
+    }
+    .nav-links.is-open { display: flex; background: #080808; }
+    .nav-links a {
+      padding: 14px 22px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    .step { width: 108px; }
+    .step-name { display: none; }
+    .year-panel { padding: 22px 16px 18px; }
+    .short { font-size: 22px; }
+    .who { flex-direction: row; overflow-x: auto; }
+    .who button { min-width: 140px; }
+    .beats-mini div { grid-template-columns: 72px minmax(0, 1fr); }
+    footer { padding: 18px; }
+    .paper, .story, .people, .format { padding: 64px 0; }
+    .inquire { padding: 72px 0 64px; }
+  }
+</style>
+</head>
+<body>
+<a class="sr-only" href="#story">Skip to the story</a>
+<header class="nav">
+  <a class="brand" href="#top">
+    <img src="images/logo-mark.png" alt="" width="28" height="32">
+    <span class="brand-name">One Year Later</span>
+  </a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+    <span class="sr-only">Menu</span>
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#story">Story</a></li>
+    <li><a href="#years">Years</a></li>
+    <li><a href="#people">People</a></li>
+    <li><a href="#format">Format</a></li>
+    <li><a href="#inquire">Inquire</a></li>
+  </ul>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Key art">
+    <div class="wrap hero-grid">
+      <div class="hero-intro">
+        <p class="eyebrow">Scary Romantic · Crime thriller</p>
+        <h1>One<br>Year<br>Later</h1>
+        <p class="tagline" id="tagline">Six years. Two friends. One hunt that never ends.</p>
+      </div>
+
+      <div class="hero-art">
+        <div role="tabpanel" id="hero-panel" aria-labelledby="art-1">
+          <button class="hero-poster" type="button" id="open-art">
+            <img id="hero-img" src="images/poster-hunt.jpg" width="1034" height="1522" alt="Concept key art for One Year Later. Three men stand over a dark collage of a small-town bank, palms, and open water. The title sits low. The line reads: Six years. Two friends. One hunt that never ends." fetchpriority="high">
+            <span class="sr-only">View full key art.</span>
+          </button>
+        </div>
+        <div class="art-caption">
+          <span id="art-name">The Hunt</span>
+          <span id="art-count">1 / 4</span>
+        </div>
+        <div class="thumbs" role="tablist" aria-label="Key art concepts">
+          <button class="thumb" type="button" role="tab" id="art-1" aria-selected="true" aria-controls="hero-panel" data-src="images/poster-hunt.jpg" data-name="The Hunt" data-tagline="Six years. Two friends. One hunt that never ends." data-alt="Concept key art for One Year Later. Three men stand over a dark collage of a small-town bank, palms, and open water. The title sits low. The line reads: Six years. Two friends. One hunt that never ends.">
+            <img src="images/poster-hunt.jpg" alt="" width="1034" height="1522">
+          </button>
+          <button class="thumb" type="button" role="tab" id="art-2" aria-selected="false" aria-controls="hero-panel" data-src="images/poster-split.jpg" data-name="The Split" data-tagline="Every year changes them. Nothing escapes him." data-alt="Concept key art for One Year Later. A vertical title splits two men. An older man stands beneath a burning horizon and a city skyline. The line reads: Every year changes them. Nothing escapes him.">
+            <img src="images/poster-split.jpg" alt="" width="1004" height="1522">
+          </button>
+          <button class="thumb" type="button" role="tab" id="art-3" aria-selected="false" aria-controls="hero-panel" data-src="images/poster-years.jpg" data-name="The Years" data-tagline="The Robbery. The Escape. The Chase. The Siege. All Is Lost. The Breakout." data-alt="Concept key art for One Year Later on torn parchment. Portraits and a red slash beside the six chapters: Year One The Robbery, Year Two The Escape, Year Three The Chase, Year Four The Siege, Year Five All Is Lost, Year Six The Breakout.">
+            <img src="images/poster-years.jpg" alt="" width="1034" height="1540">
+          </button>
+          <button class="thumb" type="button" role="tab" id="art-4" aria-selected="false" aria-controls="hero-panel" data-src="images/poster-personal.jpg" data-name="Personal" data-tagline="They took the money. He took it personal." data-alt="Concept key art for One Year Later in the rain at night. Three men above a stone prison on the water. The line reads: They took the money. He took it personal.">
+            <img src="images/poster-personal.jpg" alt="" width="1004" height="1540">
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-rest">
+        <p class="logline">After a botched bank robbery, two lifelong friends spend six years on the run. Every chapter begins exactly one year later.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="#years">Enter the years</a>
+          <a class="btn" href="mailto:contact@scaryromantic.com">Inquire</a>
+        </div>
+        <p class="byline">Written by Tyler Forrest</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="paper" id="story">
+    <div class="wrap">
+      <p class="eyebrow">Logline</p>
+      <h2>Changing names, a marriage that cannot survive the money, a betrayal buried inside the loyalty, and a retired detective who refuses to let the case die.</h2>
+    </div>
+  </section>
+
+  <section class="story" aria-labelledby="hook-title">
+    <div class="wrap story-grid">
+      <div>
+        <p class="eyebrow">The hook</p>
+        <h2 class="display" id="hook-title" style="font-size:clamp(42px,5vw,64px)">The missing year is the thriller.</h2>
+        <ol class="rule-list">
+          <li><strong>One job</strong><span>A small-town bank. Blanks in the guns. A getaway that barely deserves the name.</span></li>
+          <li><strong>One cut</strong><span>Every chapter opens exactly one year later. The running in between is never shown.</span></li>
+          <li><strong>One hunt</strong><span>A widowed detective, told to enjoy his retirement, decides the case is the rest of his life.</span></li>
+        </ol>
+      </div>
+      <div class="prose">
+        <p>Jack and Evan have been a fact in each other’s lives since they were boys. Jack can talk a bad idea into sounding like freedom. Evan still believes a plan can save a family — a wife, a lost job, a baby on the way. On the road into a town of a hundred people, a black Buick sits too calmly in the mirror. Jack convinces him the way through is the front door of a bank.</p>
+        <p>They get away with it. That is the least interesting thing that happens.</p>
+        <p><strong>One Year Later</strong> is the six years after the money. You do not watch them run. You arrive when the new names are already slipping, when the marriage has already turned, when the man who was told to retire has already decided not to. The audience pieces together the missing time the way the men do: from a scar, a child, a car that should not be there, a loyalty that feels like too much. Jack is hiding a night with Claire. Evan loves him like a brother and will learn how to blame him like an enemy. Claire leaves the life the robbery was supposed to protect. Detective Brown follows them across countries because the chase is the only purpose he has left.</p>
+        <p>Six chapters. Then the rule fires one more time.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="years" id="years" aria-labelledby="years-title">
+    <div class="wrap">
+      <div class="years-head">
+        <div>
+          <p class="eyebrow">Six chapters</p>
+          <h2 id="years-title">The years</h2>
+        </div>
+        <p class="hint">Move through the timeline. Open a year when you want the full beats. Arrow keys work here.</p>
+      </div>
+
+      <div class="stepper-wrap">
+        <div class="stepper" role="tablist" aria-label="Six-year timeline">
+          <button class="step" type="button" role="tab" id="tab-1" aria-controls="year-1" aria-selected="true">
+            <span class="step-num">01</span>
+            <span class="step-name">The Robbery</span>
+            <span class="step-loc">Small Town</span>
+          </button>
+          <button class="step" type="button" role="tab" id="tab-2" aria-controls="year-2" aria-selected="false">
+            <span class="step-num">02</span>
+            <span class="step-name">The Escape</span>
+            <span class="step-loc">The Island</span>
+          </button>
+          <button class="step" type="button" role="tab" id="tab-3" aria-controls="year-3" aria-selected="false">
+            <span class="step-num">03</span>
+            <span class="step-name">The Chase</span>
+            <span class="step-loc">Boardwalk</span>
+          </button>
+          <button class="step" type="button" role="tab" id="tab-4" aria-controls="year-4" aria-selected="false">
+            <span class="step-num">04</span>
+            <span class="step-name">The Siege</span>
+            <span class="step-loc">The Cabin</span>
+          </button>
+          <button class="step" type="button" role="tab" id="tab-5" aria-controls="year-5" aria-selected="false">
+            <span class="step-num">05</span>
+            <span class="step-name">All Is Lost</span>
+            <span class="step-loc">Swamp / Prison</span>
+          </button>
+          <button class="step" type="button" role="tab" id="tab-6" aria-controls="year-6" aria-selected="false">
+            <span class="step-num">06</span>
+            <span class="step-name">The Breakout</span>
+            <span class="step-loc">South America</span>
+          </button>
+          <button class="step" type="button" role="tab" id="tab-7" aria-controls="year-7" aria-selected="false">
+            <span class="step-num">EPI</span>
+            <span class="step-name">Epilogue</span>
+            <span class="step-loc">One year later</span>
+          </button>
+        </div>
+      </div>
+
+      <article class="year-panel is-on" id="year-1" role="tabpanel" aria-labelledby="tab-1">
+        <p class="eyebrow">Year One</p>
+        <h3>The Robbery</h3>
+        <div class="meta-row">
+          <p><span>Location</span>Small Town</p>
+          <p><span>Stakes</span>Get out with the money. Stay unknown.</p>
+        </div>
+        <p class="short">Jack talks his oldest friend into a small-town bank. The guns are loaded with blanks. They get out. A detective a month from retirement is told to let it go.</p>
+        <details class="beats">
+          <summary><span class="when-closed">Read the full year</span><span class="when-open">Hide the full year</span></summary>
+          <div class="beats-copy">
+            <p>The chapter opens in the car, before anyone says the word bank. Jack and Evan have been friends their whole lives. The money is gone. Evan’s job is gone. Claire is pregnant, and the marriage is already coming apart. Something between Jack and Claire is in the car with them — felt, not explained. They are driving into a town of a hundred people, and a black Buick has been in the mirror too long.</p>
+            <p>Masks. Guns. A robbery they are making up as they go. It works, barely. Only afterward is it clear the guns were loaded with blanks. They burn the car in the desert, take the money in a second car, and disappear. Detective Brown stands in what they left: blanks, almost no faces, a scrap of a clue. His partner tells him he retires next month. Go enjoy your life.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="year-panel" id="year-2" role="tabpanel" aria-labelledby="tab-2">
+        <p class="eyebrow">Year Two</p>
+        <h3>The Escape</h3>
+        <div class="meta-row">
+          <p><span>Location</span>Tropical Island</p>
+          <p><span>Stakes</span>Keep the life they stole — or go home to a baby.</p>
+        </div>
+        <p class="short">False names, a bar, cash that spends like proof. Evan wants to go home. A widowed detective hears too much. The island makes them leave.</p>
+        <details class="beats">
+          <summary><span class="when-closed">Read the full year</span><span class="when-open">Hide the full year</span></summary>
+          <div class="beats-copy">
+            <p>One year later they are other people on a tropical island, and for a moment it looks like they won. Jack buys the bar and spends like a man who got away with it. Evan sits out of the light. He wants Claire. He wants the baby, who is almost here. They are bad at the new names.</p>
+            <p>A widowed man drinks alone and talks about a dead wife to a bartender who isn’t listening — then he hears Jack say he robbed a bank, joking or not. He follows. He hears regret, and he sees the cash. He calls someone who tells him to let it go. He is retired. He does not let it go. The next day Jack’s fight with a group of tourists brings the island police. They are released and told to leave. Evan has been saying they have to get back anyway. They take the next boat. Detective Brown watches it go.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="year-panel" id="year-3" role="tabpanel" aria-labelledby="tab-3">
+        <p class="eyebrow">Year Three</p>
+        <h3>The Chase</h3>
+        <div class="meta-row">
+          <p><span>Location</span>Back Home / Boardwalk</p>
+          <p><span>Stakes</span>A family in the open, and a line they haven’t crossed.</p>
+        </div>
+        <p class="short">A one-year-old. A marriage Claire is already leaving. The black Buick is back, and it is not the police. By the end of the night they are no longer only thieves, and Brown has seen it.</p>
+        <details class="beats">
+          <summary><span class="when-closed">Read the full year</span><span class="when-open">Hide the full year</span></summary>
+          <div class="beats-copy">
+            <p>The year has already done its damage. Evan and Claire have a one-year-old and a marriage that will not survive this life. Claire wants out. Jack shows up at the worst moment. The child runs to him before running to Evan, and the room goes quiet around a question the film refuses to answer. Jack pulls Evan aside: the black Buick is back. He makes Evan take a gun. Evan tells him to leave.</p>
+            <p>Days later the same car follows them. Evan’s fear puts the gun in his hand in front of Claire, who has never seen it. Jack finds his own car broken open and a note asking where the money is. Brown comes to the house without a badge, because he doesn’t have one anymore. Claire shuts the door and still gives away too much. She asks for the badge. She lies. Evan hides — he knows the face from the island. Brown slips a tracker under the car. Claire tells Evan he cannot stay. She will go to her sister. He will take a motel.</p>
+            <p>The next night the house is dark. Brown breaks in and finds fake IDs and cash. He has them. Jack calls Evan to the south end of the boardwalk. The man in the Buick was supposed to get a warning. Jack fires. It isn’t enough. Evan kills the man to keep Jack alive. They are murderers now. Brown reaches the scene in time to see it, old badge out. They run.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="year-panel" id="year-4" role="tabpanel" aria-labelledby="tab-4">
+        <p class="eyebrow">Year Four</p>
+        <h3>The Siege</h3>
+        <div class="meta-row">
+          <p><span>Location</span>Remote Canadian Cabin</p>
+          <p><span>Stakes</span>Each other — then the men who came for a son.</p>
+        </div>
+        <p class="short">Winter. New names. A payphone call to a wife who is already gone. Jack tells the truth he has been carrying. Before that fight can finish them, the dead man’s people arrive.</p>
+        <details class="beats">
+          <summary><span class="when-closed">Read the full year</span><span class="when-open">Hide the full year</span></summary>
+          <div class="beats-copy">
+            <p>A remote cabin. Beards, long hair, names they have to think about before they answer to them. Evan and Claire are divorced. He calls her from a payphone and talks about the child, about how faithful she was, about going back. Jack has been too interested in that baby. He finally says it: he slept with Claire near the start of the marriage. They beat each other bloody. Evan has a gun on Jack when the trucks arrive.</p>
+            <p>The man they killed had a father. He wants the money, and he wants blood. Jack and Evan, who were just trying to destroy each other, fight as one unit. They bring down the man who came for revenge, turn the men who only came for cash, and get out with the money. They burn what they leave behind.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="year-panel" id="year-5" role="tabpanel" aria-labelledby="tab-5">
+        <p class="eyebrow">Year Five</p>
+        <h3>All Is Lost</h3>
+        <div class="meta-row">
+          <p><span>Location</span>Florida Swamp &amp; Cuban Prison</p>
+          <p><span>Stakes</span>Separate. The border refuses.</p>
+        </div>
+        <p class="short">The money goes into a swamp. Cuba was supposed to be where they split. A border does not care. A cell does the opposite of a goodbye. Brown is still following the water.</p>
+        <details class="beats">
+          <summary><span class="when-closed">Read the full year</span><span class="when-open">Hide the full year</span></summary>
+          <div class="beats-copy">
+            <p>They hide the money in a Florida swamp and agree, once they reach Cuba, to part. A drug boat takes them south. The plan dies at the border. They are arrested. In the prison, Evan says what he has been saying sideways for years: Jack destroyed his life. They are still locked in the same place, with the same person.</p>
+            <p>Brown, still unofficial, retraces them — locals who almost recognize a face, a marina, the smugglers they left with. The chapter ends with Jack and Evan sure they may die in that cell.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="year-panel" id="year-6" role="tabpanel" aria-labelledby="tab-6">
+        <p class="eyebrow">Year Six</p>
+        <h3>The Breakout</h3>
+        <div class="meta-row">
+          <p><span>Location</span>Breakout &amp; South America</p>
+          <p><span>Stakes</span>Out of the cage. Brown’s door is the only one.</p>
+        </div>
+        <p class="short">Brown visits with a way out and a motive that isn’t mercy. The break is real. The freedom on the other side is a trap. They live through it, and spend one night talking about normal work.</p>
+        <details class="beats">
+          <summary><span class="when-closed">Read the full year</span><span class="when-open">Hide the full year</span></summary>
+          <div class="beats-copy">
+            <p>A year later they are thinner, marked, shaved down by the prison. Brown comes to visit. He has spent the year on the guards’ shifts and the things in the prison that fail. He slips them a plan. They ask why he would help. Because they are no good to him locked up in Cuba. He is addicted to the chase. They don’t trust him. They have no other door.</p>
+            <p>Two weeks later the alarms sound. Other inmates turn. Guards close in. Jack risks the exit to pull Evan through, and gets him out. They come up with nothing, into a circle of American military — and Brown. It was a setup. As they are taken, a local cartel opens fire. In the crossfire they take a vehicle, then a prop plane. The landing is a field in South America, hard and off any map they had.</p>
+            <p>A farm family that doesn’t share their language feeds them and lets them wash. Jack says they should part. He doesn’t mean it. He just saved Evan’s life. Evan says they can play it by ear. They talk about ordinary jobs. About being done. For the length of that night, they agree.</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="year-panel" id="year-7" role="tabpanel" aria-labelledby="tab-7">
+        <p class="eyebrow">Epilogue</p>
+        <h3>Get on the ground</h3>
+        <div class="meta-row">
+          <p><span>Location</span>One year later</p>
+          <p><span>Stakes</span>The rule holds.</p>
+        </div>
+        <p class="short">They talked about ordinary work. They agreed to be done. The film waits one more year.</p>
+        <details class="beats">
+          <summary><span class="when-closed">Read the full year</span><span class="when-open">Hide the full year</span></summary>
+          <div class="beats-copy">
+            <p>Cut to one year later. “Get on the ground.” They are robbing a bank again. Cut to black.</p>
+          </div>
+        </details>
+      </article>
+
+      <div class="year-nav">
+        <button type="button" id="year-prev">Previous</button>
+        <p class="year-count" id="year-count">1 / 7</p>
+        <button type="button" id="year-next">Next year</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="people" id="people" aria-labelledby="people-title">
+    <div class="wrap">
+      <p class="eyebrow">Dossiers</p>
+      <h2 id="people-title">Four people. Six years.</h2>
+      <div class="people-grid">
+        <div class="who" role="tablist" aria-label="Characters">
+          <button type="button" role="tab" id="who-jack" aria-selected="true" aria-controls="person-jack"><small>01</small><strong>Jack</strong></button>
+          <button type="button" role="tab" id="who-evan" aria-selected="false" aria-controls="person-evan"><small>02</small><strong>Evan</strong></button>
+          <button type="button" role="tab" id="who-claire" aria-selected="false" aria-controls="person-claire"><small>03</small><strong>Claire</strong></button>
+          <button type="button" role="tab" id="who-brown" aria-selected="false" aria-controls="person-brown"><small>04</small><strong>Brown</strong></button>
+        </div>
+
+        <article class="dossier-panel is-on" id="person-jack" role="tabpanel" aria-labelledby="who-jack">
+          <p class="eyebrow">The risk</p>
+          <h3>Jack</h3>
+          <p class="role">A charismatic addict of freedom, loyal in a way that feels like too much.</p>
+          <div class="facts">
+            <div class="fact">
+              <h4>What he wants</h4>
+              <p>A life that never clocks in. He charms every room and hides how afraid he is. He refuses ordinary work, and he is the one who makes a bank sound possible.</p>
+            </div>
+            <div class="fact">
+              <h4>What he hides</h4>
+              <p>He slept with Claire after she married Evan. The fierce loyalty is real, and it is also guilt. He carries it like a second gun until a cabin in Canada forces it into the open.</p>
+            </div>
+            <div class="fact">
+              <h4>Across the years</h4>
+              <div class="beats-mini">
+                <div><b>Year 2</b><span>Spends the island like a verdict he got away with.</span></div>
+                <div><b>Year 4</b><span>Tells Evan the truth, then stands with him against the people who came for blood.</span></div>
+                <div><b>Year 6</b><span>Pulls Evan through the breakout, and still can’t ask him to stay.</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dossier-panel" id="person-evan" role="tabpanel" aria-labelledby="who-evan">
+          <p class="eyebrow">The plan</p>
+          <h3>Evan</h3>
+          <p class="role">A loyal planner, desperate for a life that sits still.</p>
+          <div class="facts">
+            <div class="fact">
+              <h4>What he wants</h4>
+              <p>Less hungry than Jack, and always a half-step behind the life he was promised. Fired, with a baby coming, he agrees to the robbery because providing still feels like a moral act.</p>
+            </div>
+            <div class="fact">
+              <h4>What binds him</h4>
+              <p>He loves Jack like a brother and will blame him like the author of every bad year. By the time he has killed for him, the friendship is no longer a sentiment. It is a record.</p>
+            </div>
+            <div class="fact">
+              <h4>Across the years</h4>
+              <div class="beats-mini">
+                <div><b>Year 2</b><span>The island is a prize he can’t enjoy. He wants Claire, and a child who will not wait.</span></div>
+                <div><b>Year 3</b><span>Home ends the marriage. He kills so Jack will live.</span></div>
+                <div><b>Year 5</b><span>In a cell he says it plainly: Jack ruined his life. He still can’t get away from him.</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dossier-panel" id="person-claire" role="tabpanel" aria-labelledby="who-claire">
+          <p class="eyebrow">The life</p>
+          <h3>Claire</h3>
+          <p class="role">Evan’s wife. Once, briefly, Jack’s. Not a prize between them.</p>
+          <div class="facts">
+            <div class="fact">
+              <h4>What she wants</h4>
+              <p>The life the money was supposed to protect. A child raised somewhere that isn’t a motel, a fake name, or a man who flinches at cars.</p>
+            </div>
+            <div class="fact">
+              <h4>What she carries</h4>
+              <p>One night with Jack after the wedding. The film lets the question of the child stay in the room — a reach, a look — and does not settle it.</p>
+            </div>
+            <div class="fact">
+              <h4>Across the years</h4>
+              <div class="beats-mini">
+                <div><b>Year 3</b><span>She shuts the door on a man with no badge, and tells Evan he cannot stay.</span></div>
+                <div><b>Year 4</b><span>She is already gone. Evan is still talking to her from a payphone.</span></div>
+                <div><b>After</b><span>Survival replaced her husband. She leaves before it can replace her.</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="dossier-panel" id="person-brown" role="tabpanel" aria-labelledby="who-brown">
+          <p class="eyebrow">The hunt</p>
+          <h3>Brown</h3>
+          <p class="role">A retired detective who refuses to let the case die.</p>
+          <div class="facts">
+            <div class="fact">
+              <h4>What he wants</h4>
+              <p>Purpose. Recently widowed, officially finished, he builds a case no one asked for. The hunt is how he stays a detective after the job and the marriage are both over.</p>
+            </div>
+            <div class="fact">
+              <h4>What he becomes</h4>
+              <p>Smart enough to connect impossible dots. Unofficial enough that even the people who know him want him to stop. Helping them out of a foreign prison is not mercy. A cage ends his story.</p>
+            </div>
+            <div class="fact">
+              <h4>Across the years</h4>
+              <div class="beats-mini">
+                <div><b>Year 1</b><span>Finds the blanks. Is told to go enjoy his life.</span></div>
+                <div><b>Year 3</b><span>Walks into their house without a badge, then onto a murder in time to see it.</span></div>
+                <div><b>Year 6</b><span>Hands them the only way out, because he is addicted to the chase. The door is also a trap.</span></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="format" id="format">
+    <div class="wrap">
+      <p class="eyebrow">Format &amp; series</p>
+      <h2>A feature. Or six episodes. The same cut.</h2>
+      <p class="lede">One storytelling rule holds either way: every chapter opens exactly one year later. The feature is a complete story. Each chapter can also stand as an episode.</p>
+      <div class="modes" role="group" aria-label="How the story is delivered">
+        <button type="button" id="mode-feature" aria-pressed="true">As a feature</button>
+        <button type="button" id="mode-series" aria-pressed="false">As a series</button>
+      </div>
+      <p class="delivery-line" id="delivery-line">In a feature, you feel the year as a cut. You lose twelve months, and you are trusted to know who they became.</p>
+      <div class="mode-grid">
+        <article class="mode-card is-hot" id="card-feature">
+          <h3>The film</h3>
+          <p>Six chapters, one sitting. The grammar is the jump. The epilogue does not soften the ending. It proves the rule. They said they were done. Then someone says get on the ground.</p>
+        </article>
+        <article class="mode-card" id="card-series">
+          <h3>The series</h3>
+          <p>The same six chapters, released as six episodes. Every cold open is the same promise: you are one year late. The missing time is why a viewer comes back. Nothing about the feature has to be broken to make the series. The chapters were built as both.</p>
+        </article>
+      </div>
+      <p class="after"><strong>What continues.</strong> Another season, or another film, does not reboot the premise and does not clear the debt. It turns the calendar. One more year. The rule holds.</p>
+    </div>
+  </section>
+
+  <section class="inquire" id="inquire">
+    <div class="wrap">
+      <p class="eyebrow">Scary Romantic</p>
+      <h2>Inquire</h2>
+      <p class="tag">A feature. A series. A rule that does not expire.</p>
+      <a class="email" href="mailto:contact@scaryromantic.com">contact@scaryromantic.com</a>
+      <p class="fine">Written by Tyler Forrest · Los Angeles · <a href="https://www.scaryromantic.com/">scaryromantic.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© 2026 Scary Romantic · One Year Later</span>
+  <a href="mailto:contact@scaryromantic.com">contact@scaryromantic.com</a>
+</footer>
+
+<dialog class="lb" id="lightbox" aria-label="Full key art">
+  <div class="lb-top">
+    <p id="lb-count">1 / 4</p>
+    <button class="lb-close" type="button" id="lb-close">Close</button>
+  </div>
+  <figure class="lb-figure">
+    <img id="lb-img" src="images/poster-hunt.jpg" alt="" width="1034" height="1522">
+    <figcaption class="lb-cap" id="lb-cap"></figcaption>
+  </figure>
+  <div class="lb-bottom">
+    <div class="lb-nav">
+      <button type="button" id="lb-prev">Previous</button>
+      <button type="button" id="lb-next">Next</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Nav */
+  var toggle = document.querySelector(".nav-toggle");
+  var links = document.getElementById("nav-links");
+  function closeNav() {
+    links.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+  }
+  toggle.addEventListener("click", function () {
+    var open = links.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  links.querySelectorAll("a").forEach(function (a) {
+    a.addEventListener("click", closeNav);
+  });
+
+  /* Key art */
+  var thumbs = Array.prototype.slice.call(document.querySelectorAll(".thumb"));
+  var heroImg = document.getElementById("hero-img");
+  var tagline = document.getElementById("tagline");
+  var artName = document.getElementById("art-name");
+  var artCount = document.getElementById("art-count");
+  var heroPanel = document.getElementById("hero-panel");
+  var artIndex = 0;
+
+  function showArt(i, focus) {
+    artIndex = (i + thumbs.length) % thumbs.length;
+    var btn = thumbs[artIndex];
+    thumbs.forEach(function (t, n) {
+      var on = n === artIndex;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+    });
+    heroImg.src = btn.dataset.src;
+    heroImg.alt = btn.dataset.alt;
+    tagline.textContent = btn.dataset.tagline;
+    artName.textContent = btn.dataset.name;
+    artCount.textContent = (artIndex + 1) + " / " + thumbs.length;
+    heroPanel.setAttribute("aria-labelledby", btn.id);
+    if (focus) btn.focus();
+    if (lightbox.open) paintLightbox();
+  }
+  thumbs.forEach(function (btn, n) {
+    btn.tabIndex = n === 0 ? 0 : -1;
+    btn.addEventListener("click", function () { showArt(n, false); });
+  });
+  document.querySelector(".thumbs").addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { e.preventDefault(); showArt(artIndex + 1, true); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); showArt(artIndex - 1, true); }
+    if (e.key === "Home") { e.preventDefault(); showArt(0, true); }
+    if (e.key === "End") { e.preventDefault(); showArt(thumbs.length - 1, true); }
+  });
+
+  /* Lightbox */
+  var lightbox = document.getElementById("lightbox");
+  var lbImg = document.getElementById("lb-img");
+  var lbCap = document.getElementById("lb-cap");
+  var lbCount = document.getElementById("lb-count");
+  var opener = null;
+  function paintLightbox() {
+    var btn = thumbs[artIndex];
+    lbImg.src = btn.dataset.src;
+    lbImg.alt = btn.dataset.alt;
+    lbCap.textContent = btn.dataset.name + " — " + btn.dataset.tagline;
+    lbCount.textContent = (artIndex + 1) + " / " + thumbs.length;
+  }
+  function openLightbox() {
+    opener = document.activeElement;
+    paintLightbox();
+    lightbox.showModal();
+  }
+  document.getElementById("open-art").addEventListener("click", openLightbox);
+  document.getElementById("lb-close").addEventListener("click", function () { lightbox.close(); });
+  document.getElementById("lb-prev").addEventListener("click", function () { showArt(artIndex - 1, false); });
+  document.getElementById("lb-next").addEventListener("click", function () { showArt(artIndex + 1, false); });
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) lightbox.close();
+  });
+  lightbox.addEventListener("close", function () {
+    if (opener && opener.focus) opener.focus();
+  });
+  lightbox.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight") { e.preventDefault(); showArt(artIndex + 1, false); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); showArt(artIndex - 1, false); }
+  });
+  var touchX = null;
+  lightbox.addEventListener("touchstart", function (e) {
+    touchX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener("touchend", function (e) {
+    if (touchX == null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) showArt(artIndex + (dx < 0 ? 1 : -1), false);
+    touchX = null;
+  }, { passive: true });
+
+  /* Years */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".step"));
+  var panels = Array.prototype.slice.call(document.querySelectorAll(".year-panel"));
+  var yearIndex = 0;
+  var beatsOpen = false;
+  var countEl = document.getElementById("year-count");
+  var prevBtn = document.getElementById("year-prev");
+  var nextBtn = document.getElementById("year-next");
+
+  function showYear(i, opts) {
+    opts = opts || {};
+    yearIndex = Math.max(0, Math.min(panels.length - 1, i));
+    tabs.forEach(function (tab, n) {
+      var on = n === yearIndex;
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+      tab.classList.toggle("is-past", n < yearIndex);
+    });
+    panels.forEach(function (panel, n) {
+      var on = n === yearIndex;
+      panel.classList.toggle("is-on", on);
+      if (!on) return;
+      var details = panel.querySelector("details");
+      if (details) details.open = beatsOpen;
+    });
+    countEl.textContent = (yearIndex + 1) + " / " + panels.length;
+    prevBtn.disabled = yearIndex === 0;
+    nextBtn.disabled = yearIndex === panels.length - 1;
+    if (opts.scrollTab) {
+      var scroller = document.querySelector(".stepper-wrap");
+      var tab = tabs[yearIndex];
+      var target = tab.offsetLeft - (scroller.clientWidth - tab.offsetWidth) / 2;
+      scroller.scrollTo({ left: Math.max(0, target), behavior: "auto" });
+    }
+    if (opts.focusTab) tabs[yearIndex].focus();
+  }
+  tabs.forEach(function (tab, n) {
+    tab.tabIndex = n === 0 ? 0 : -1;
+    tab.addEventListener("click", function () { showYear(n, { scrollTab: true }); });
+  });
+  document.querySelector(".stepper").addEventListener("keydown", function (e) {
+    var next = null;
+    if (e.key === "ArrowRight") next = yearIndex + 1;
+    if (e.key === "ArrowLeft") next = yearIndex - 1;
+    if (e.key === "Home") next = 0;
+    if (e.key === "End") next = tabs.length - 1;
+    if (next == null) return;
+    e.preventDefault();
+    showYear(next, { focusTab: true, scrollTab: true });
+  });
+  prevBtn.addEventListener("click", function () { showYear(yearIndex - 1, { scrollTab: true }); });
+  nextBtn.addEventListener("click", function () { showYear(yearIndex + 1, { scrollTab: true }); });
+  document.getElementById("years").addEventListener("keydown", function (e) {
+    if (e.target.closest(".stepper") || e.target.closest("summary") || e.target.closest("a")) return;
+    if (e.key === "ArrowRight") { e.preventDefault(); showYear(yearIndex + 1, { scrollTab: true }); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); showYear(yearIndex - 1, { scrollTab: true }); }
+  });
+  document.querySelectorAll("#years details").forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.closest(".year-panel").classList.contains("is-on")) beatsOpen = d.open;
+    });
+  });
+  showYear(0);
+
+  /* People */
+  var who = Array.prototype.slice.call(document.querySelectorAll(".who button"));
+  var dossiers = Array.prototype.slice.call(document.querySelectorAll(".dossier-panel"));
+  var whoIndex = 0;
+  function showPerson(i, focus) {
+    whoIndex = Math.max(0, Math.min(dossiers.length - 1, i));
+    who.forEach(function (btn, n) {
+      var on = n === whoIndex;
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+      btn.tabIndex = on ? 0 : -1;
+    });
+    dossiers.forEach(function (panel, n) {
+      panel.classList.toggle("is-on", n === whoIndex);
+    });
+    if (focus) who[whoIndex].focus();
+  }
+  who.forEach(function (btn, n) {
+    btn.tabIndex = n === 0 ? 0 : -1;
+    btn.addEventListener("click", function () { showPerson(n, false); });
+  });
+  document.querySelector(".who").addEventListener("keydown", function (e) {
+    var next = null;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = whoIndex + 1;
+    if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = whoIndex - 1;
+    if (e.key === "Home") next = 0;
+    if (e.key === "End") next = who.length - 1;
+    if (next == null) return;
+    e.preventDefault();
+    showPerson(next, true);
+  });
+
+  /* Format */
+  var featureBtn = document.getElementById("mode-feature");
+  var seriesBtn = document.getElementById("mode-series");
+  var delivery = document.getElementById("delivery-line");
+  var cardF = document.getElementById("card-feature");
+  var cardS = document.getElementById("card-series");
+  var lines = {
+    feature: "In a feature, you feel the year as a cut. You lose twelve months, and you are trusted to know who they became.",
+    series: "In a series, you feel the year as a week. Same law, same cold open: you are one year late, and you come back to find out who made it."
+  };
+  function setMode(mode) {
+    var feature = mode === "feature";
+    featureBtn.setAttribute("aria-pressed", feature ? "true" : "false");
+    seriesBtn.setAttribute("aria-pressed", feature ? "false" : "true");
+    cardF.classList.toggle("is-hot", feature);
+    cardS.classList.toggle("is-hot", !feature);
+    delivery.textContent = lines[mode];
+  }
+  featureBtn.addEventListener("click", function () { setMode("feature"); });
+  seriesBtn.addEventListener("click", function () { setMode("series"); });
+
+  /* Deep links */
+  var hashMap = {
+    "#year-1": 0, "#year-2": 1, "#year-3": 2, "#year-4": 3,
+    "#year-5": 4, "#year-6": 5, "#year-7": 6, "#epilogue": 6,
+    "#jack": 0, "#evan": 1, "#claire": 2, "#brown": 3
+  };
+  function applyHash() {
+    var h = location.hash;
+    if (hashMap[h] == null) return;
+    if (h.indexOf("year") !== -1 || h === "#epilogue") {
+      showYear(hashMap[h], { scrollTab: true });
+      document.getElementById("years").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    } else {
+      showPerson(hashMap[h], false);
+      document.getElementById("people").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    }
+  }
+  window.addEventListener("hashchange", applyHash);
+  applyHash();
+})();
+</script>
+</body>
+</html>
